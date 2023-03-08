@@ -1,0 +1,21 @@
+.element__group {
+  width: 22px;
+  height: 19px;
+  border: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  background-image: url(../../../images/svg/like.svg);
+  background-color: #fff;
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+}
+.element__group:hover {
+  opacity: 0.6;
+}
+.element__group:focus {
+  background-image: url(../../../images/svg/like-active.svg);
+}

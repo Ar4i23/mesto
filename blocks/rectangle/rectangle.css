@@ -1,0 +1,12 @@
+.rectangle {
+  width: 24px;
+  height: 24px;
+  background-color: #000000;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rectangle:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,22 @@
+.profile__info-title {
+  max-width: 294px;
+  margin: 0;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+}
+@media (max-width: 830px) {
+  .profile__info-title {
+    margin: 0 auto;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+}
+@media (max-width: 500px) {
+  .profile__info-title {
+    max-width: 200px;
+    font-size: 27px;
+    line-height: 33px;
+  }
+}

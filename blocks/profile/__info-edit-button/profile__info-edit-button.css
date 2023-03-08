@@ -1,0 +1,21 @@
+.profile__info-edit-button {
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+@media (max-width: 830px) {
+  .profile__info-edit-button {
+    right: -20px;
+  }
+}
+@media (max-width: 500px) {
+  .profile__info-edit-button {
+    right: 10px;
+    top: 4px;
+  }
+}
+@media (max-width: 350px) {
+  .profile__info-edit-button {
+    right: 0px;
+  }
+}

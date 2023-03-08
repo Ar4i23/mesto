@@ -1,0 +1,23 @@
+.modal__content {
+  max-width: 430px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 36px 37px;
+  position: relative;
+}
+@media (max-width: 830px) {
+  .modal__content {
+    max-width: 304px;
+  }
+}
+@media (max-width: 500px) {
+  .modal__content {
+    max-width: 282px;
+    padding: 25px 22px;
+  }
+}
+@media (max-width: 320px) {
+  .modal__content {
+    max-width: 242px;
+  }
+}

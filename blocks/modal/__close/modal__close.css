@@ -1,0 +1,32 @@
+.modal__close {
+  width: 32px;
+  height: 32px;
+  background: url(../../../images/svg/Close-Icon.svg);
+  position: absolute;
+  background-size: cover;
+  top: -34px;
+  right: -34px;
+}
+.modal__close:hover {
+  opacity: 0.8;
+}
+@media (max-width: 500px) {
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    right: 0px;
+  }
+}
+@media (max-width: 400px) {
+  .modal__close {
+    width: 23px;
+    height: 23px;
+  }
+}
+@media (max-width: 320px) {
+  .modal__close {
+    width: 20px;
+    height: 20px;
+    top: -30px;
+  }
+}

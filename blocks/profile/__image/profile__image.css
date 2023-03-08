@@ -1,0 +1,11 @@
+.profile__image {
+  width: 168px;
+  height: 127px;
+  display: flex;
+}
+@media (max-width: 830px) {
+  .profile__image {
+    justify-content: center;
+    margin-bottom: 23px;
+  }
+}
