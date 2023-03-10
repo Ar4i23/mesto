@@ -1,86 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
     <title>Mesto</title>
-</head>
-<!-- блок page -->
+  </head>
+  <!-- блок page -->
 
-<body class="page">
+  <body class="page">
     <header class="header">
-        <a href="#" class="header__logo-link"></a>
+      <a href="#" class="header__logo-link"></a>
     </header>
     <!-- блок  content-->
     <main class="content">
-        <!-- блок  profile-->
-        <section class="profile">
-            <img src="./images/kusto.png" alt="Жак-Ив Кусто в красной шапке" class="profile__image-ellipse">
-            <div class="profile__info">
-                <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-                <p class="profile__info-subtitle">Исследователь океана</p>
-                <button id="open-modal-btn" class="profile__info-edit-button" type="button"
-                    aria-label="Редактировать профиль"></button>
-            </div>
-            <button class="profile__add-botton"></button>
-        </section>
-        <!-- блок  elements-->
-        <section class="elements">
-            <article class="element">
-                <img class="element__image" src="./images/bagan.jpeg" alt="Баган">
-                <h2 class="element__title">Баган, Мьянма</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/khram.jpeg"
-                    alt="Гигантский храмовый комплекс Ангкор, Камбоджа">
-                <h2 class="element__title">Ангкор, Камбоджа</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/Petra.jpeg" alt="Древний город Петра, Иордания">
-                <h2 class="element__title">Петра, Иордания</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/monastir.jpeg" alt="Монастырский комплекс Метеоры, Греция">
-                <h2 class="element__title">Метеоры, Греция</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/piramida-gizi.jpeg" alt="Пирамиды Гизы, Египет">
-                <h2 class="element__title">Пирамиды Гизы, Египет</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-            <article class="element">
-                <img class="element__image" src="./images/risovaja.jpeg" alt="Рисовые террасы в Му Кан Чай, Вьетнам">
-                <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
-                <button class="element__button" type="button"></button>
-            </article>
-        </section>
+      <!-- блок  profile-->
+
+      <section class="profile">
+        <img
+          src="./images/kusto.png"
+          alt="Жак-Ив Кусто в красной шапке"
+          class="profile__image-ellipse"
+        />
+        <div class="profile__info">
+          <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+          <p class="profile__info-subtitle">Исследователь океана</p>
+          <button
+            id="open-modal-btn"
+            class="profile__info-edit-button"
+            type="button"
+            aria-label="Редактировать профиль"
+          ></button>
+        </div>
+        <button class="profile__add-botton"></button>
+      </section>
+      <!-- блок  elements-->
+      <section class="elements">
+        <article class="element">
+          <img class="element__image" src="./images/bagan.jpeg" alt="Баган" />
+          <h2 class="element__title">Баган, Мьянма</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+        <article class="element">
+          <img
+            class="element__image"
+            src="./images/khram.jpeg"
+            alt="Гигантский храмовый комплекс Ангкор, Камбоджа"
+          />
+          <h2 class="element__title">Ангкор, Камбоджа</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+        <article class="element">
+          <img
+            class="element__image"
+            src="./images/Petra.jpeg"
+            alt="Древний город Петра, Иордания"
+          />
+          <h2 class="element__title">Петра, Иордания</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+        <article class="element">
+          <img
+            class="element__image"
+            src="./images/monastir.jpeg"
+            alt="Монастырский комплекс Метеоры, Греция"
+          />
+          <h2 class="element__title">Метеоры, Греция</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+        <article class="element">
+          <img
+            class="element__image"
+            src="./images/piramida-gizi.jpeg"
+            alt="Пирамиды Гизы, Египет"
+          />
+          <h2 class="element__title">Пирамиды Гизы, Египет</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+        <article class="element">
+          <img
+            class="element__image"
+            src="./images/risovaja.jpeg"
+            alt="Рисовые террасы в Му Кан Чай, Вьетнам"
+          />
+          <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
+          <button class="element__button" type="button"></button>
+        </article>
+      </section>
     </main>
     <!-- блок  modal-->
     <section class="modal" id="my-modal">
-        <div class="modal__container">
-            <button class="modal__close" id="close-my-modal-btn"></button>
-            <h2 class="modal__title">Редактировать профиль</h2>
-            <form class="modal__form" name="profile-form">
-                <input name="name" type="text" class="modal__input modal__input_name">
-                <input name="about" type="text" class="modal__input modal__input_about">
-            </form>
-            <button class="modal__button" type="submit">Сохранить</button>
-        </div>
+      <div class="modal__container">
+        <button class="modal__close" id="close-my-modal-btn"></button>
+        <h2 class="modal__title">Редактировать профиль</h2>
+        <form id="form" class="modal__form" name="profile-form">
+          <input
+            name="name"
+            type="text"
+            class="modal__input modal__input_name"
+            required
+            placeholder="Имя"
+          />
+          <input
+            name="about"
+            type="text"
+            class="modal__input modal__input_about"
+            required
+            placeholder="Обо мне"
+          />
+          <button class="modal__button" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
     <!-- блок  footer-->
     <footer class="footer">
-        <p class="footer__text">© 2020 Mesto Russia</p>
+      <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
 
-
     <script src="./javaScript/index.js"></script>
-</body>
-
+  </body>
 </html>
