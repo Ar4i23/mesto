@@ -6,6 +6,9 @@
   top: 0;
   left: 0;
   visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
   transition: opacity 0.4s, visibility 0.4s;
 }
@@ -13,6 +16,28 @@
   visibility: visible;
   opacity: 1;
 }
-.modal.open .modal__box {
+.modal.open .modal__container {
   transform: scale(1);
+}
+@media (max-width: 830px) {
+  .modal {
+    align-items: start;
+    margin-top: 220px;
+  }
+}
+@media (max-width: 500px) {
+  .modal {
+    margin-top: 190px;
+  }
+}
+@media (max-width: 400px) {
+  .modal {
+    margin-top: 150px;
+  }
+}
+
+@media (max-width: 350px) {
+  .modal {
+    margin-top: 120px;
+  }
 }

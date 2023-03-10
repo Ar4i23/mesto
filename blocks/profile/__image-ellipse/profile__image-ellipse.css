@@ -1,4 +1,20 @@
 .profile__image-ellipse {
   width: 120px;
   border-radius: 50%;
+  margin-right: 30px;
+}
+@media (max-width: 830px) {
+  .profile__image-ellipse {
+    margin-right: 0;
+  }
+}
+@media (max-width: 500px) {
+  .profile__image-ellipse {
+    margin-bottom: 35px;
+  }
+}
+@media (max-width: 320px) {
+  .profile__image-ellipse {
+    margin-bottom: 29px;
+  }
 }

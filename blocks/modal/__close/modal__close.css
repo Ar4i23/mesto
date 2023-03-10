@@ -4,8 +4,9 @@
   background: url(../../../images/svg/Close-Icon.svg);
   position: absolute;
   background-size: cover;
-  top: -34px;
-  right: -34px;
+  border: 0;
+  top: -40px;
+  right: -40px;
 }
 .modal__close:hover {
   opacity: 0.6;
@@ -27,6 +28,6 @@
   .modal__close {
     width: 20px;
     height: 20px;
-    top: -30px;
+    top: -37px;
   }
 }

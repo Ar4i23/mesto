@@ -12,112 +12,68 @@
 
 <body class="page">
     <header class="header">
-        <div class="logo">
-            <a href="#" class="logo__link">
-                <img src="./images/svg/logo.svg" alt="" class="logo__img">
-            </a>
-        </div>
+        <a href="#" class="header__logo-link"></a>
     </header>
     <!-- блок  content-->
     <main class="content">
-        <div class="profile">
-            <div class="profile__image">
-                <img src="./images/kusto.png" alt="Жак-Ив Кусто в красной шапке" class="profile__image-ellipse">
-            </div>
+        <!-- блок  profile-->
+        <section class="profile">
+            <img src="./images/kusto.png" alt="Жак-Ив Кусто в красной шапке" class="profile__image-ellipse">
             <div class="profile__info">
                 <h1 class="profile__info-title">Жак-Ив Кусто</h1>
                 <p class="profile__info-subtitle">Исследователь океана</p>
-                <div class="profile__info-edit-button">
-                    <button id="open-modal-btn" class="rectangle">
-                        <div class="vector"></div>
-                    </button>
-                </div>
+                <button id="open-modal-btn" class="profile__info-edit-button" type="button"
+                    aria-label="Редактировать профиль"></button>
             </div>
-            <div class="add-botton">
-                <button class="rectangle rectangle_md">
-                    <div class="vector vector_md"></div>
-                </button>
-            </div>
-        </div>
+            <button class="profile__add-botton"></button>
+        </section>
         <!-- блок  elements-->
-        <div class="elements">
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/bagan.jpeg" alt="Баган">
-                    </div>
-                    <h2 class="element__title">Баган, Мьянма</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/khram.jpeg"
-                            alt="Гигантский храмовый комплекс Ангкор, Камбоджа">
-                    </div>
-                    <h2 class="element__title">Ангкор, Камбоджа</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/Petra.jpeg"
-                            alt="Древний город Петра, Иордания">
-                    </div>
-                    <h2 class="element__title">Петра, Иордания</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/monastir.jpeg"
-                            alt="Монастырский комплекс Метеоры, Греция">
-                    </div>
-                    <h2 class="element__title">Метеоры, Греция</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/piramida-gizi.jpeg"
-                            alt="Пирамиды Гизы, Египет">
-                    </div>
-                    <h2 class="element__title">Пирамиды Гизы, Египет</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-            <div class="element">
-                <div class="rectangle rectangle_big">
-                    <div class="element__mask-group">
-                        <img class="element__mask-group-image" src="./images/risovaja.jpeg"
-                            alt="Рисовые террасы в Му Кан Чай, Вьетнам">
-                    </div>
-                    <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
-                    <button class="element__group"></button>
-                </div>
-            </div>
-        </div>
-        <!-- блок  modal-->
-        <div id="my-modal" class="modal">
-            <div class="modal__box">
-                <div class="modal__content">
-                    <div id="close-my-modal-btn" class="modal__close"></div>
-                    <h2 class="modal__title">Редактировать профиль</h2>
-                    <form class="modal__form">
-                        <input type="text" class="modal__input modal__input-name">
-                        <input type="text" class="modal__input modal__input-about">
-                    </form>
-                    <button class="modal__button">Сохранить</button>
-                </div>
-            </div>
-        </div>
+        <section class="elements">
+            <article class="element">
+                <img class="element__image" src="./images/bagan.jpeg" alt="Баган">
+                <h2 class="element__title">Баган, Мьянма</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+            <article class="element">
+                <img class="element__image" src="./images/khram.jpeg"
+                    alt="Гигантский храмовый комплекс Ангкор, Камбоджа">
+                <h2 class="element__title">Ангкор, Камбоджа</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+            <article class="element">
+                <img class="element__image" src="./images/Petra.jpeg" alt="Древний город Петра, Иордания">
+                <h2 class="element__title">Петра, Иордания</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+            <article class="element">
+                <img class="element__image" src="./images/monastir.jpeg" alt="Монастырский комплекс Метеоры, Греция">
+                <h2 class="element__title">Метеоры, Греция</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+            <article class="element">
+                <img class="element__image" src="./images/piramida-gizi.jpeg" alt="Пирамиды Гизы, Египет">
+                <h2 class="element__title">Пирамиды Гизы, Египет</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+            <article class="element">
+                <img class="element__image" src="./images/risovaja.jpeg" alt="Рисовые террасы в Му Кан Чай, Вьетнам">
+                <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
+                <button class="element__button" type="button"></button>
+            </article>
+        </section>
     </main>
-
-
+    <!-- блок  modal-->
+    <section class="modal" id="my-modal">
+        <div class="modal__container">
+            <button class="modal__close" id="close-my-modal-btn"></button>
+            <h2 class="modal__title">Редактировать профиль</h2>
+            <form class="modal__form" name="profile-form">
+                <input name="name" type="text" class="modal__input modal__input_name">
+                <input name="about" type="text" class="modal__input modal__input_about">
+            </form>
+            <button class="modal__button" type="submit">Сохранить</button>
+        </div>
+    </section>
     <!-- блок  footer-->
     <footer class="footer">
         <p class="footer__text">© 2020 Mesto Russia</p>

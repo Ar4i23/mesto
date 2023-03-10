@@ -1,6 +1,5 @@
 .modal__input {
-  max-width: 358px;
-  min-height: 40px;
+  min-height: 31px;
   margin-bottom: 25px;
   border: 0;
   border-bottom: 1px solid #000000;
@@ -8,6 +7,9 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  display: block;
+  padding: 0;
+  width: 100%;
 }
 .modal__input:last-child {
   margin-bottom: 48px;
@@ -16,7 +18,16 @@
 @media (max-width: 500px) {
   .modal__input {
     margin-bottom: 30px;
-    min-height: 35px;
+    min-height: 30px;
+  }
+  .modal__input:last-child {
+    margin-bottom: 35px;
+  }
+}
+@media (max-width: 320px) {
+  .modal__input {
+    margin-bottom: 22px;
+    min-height: 34px;
   }
   .modal__input:last-child {
     margin-bottom: 45px;

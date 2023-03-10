@@ -1,0 +1,32 @@
+.modal__container {
+  width: 358px;
+  height: 258px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 34px 36px 37px;
+  position: relative;
+  transform: scale(0);
+  transition: transform 0.8s;
+}
+
+@media (max-width: 550px) {
+  .modal__container {
+    width: 300px;
+  }
+}
+@media (max-width: 440px) {
+  .modal__container {
+    padding: 25px 22px;
+  }
+}
+@media (max-width: 400px) {
+  .modal__container {
+    width: 262px;
+  }
+}
+@media (max-width: 340px) {
+  .modal__container {
+    width: 242px;
+    height: 272px;
+  }
+}
