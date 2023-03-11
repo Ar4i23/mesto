@@ -1,7 +1,7 @@
 document.getElementById("open-modal-btn").onclick = openModal;
 
 function openModal() {
-  document.getElementById("my-modal").classList.add("open");
+  document.getElementById("my-modal").classList.add("modal_open");
   let nameInput = document.querySelector(".profile__info-title").innerHTML;
   document.querySelector(".modal__input_name").value = nameInput;
   let aboutInput = document.querySelector(".profile__info-subtitle").innerHTML;
@@ -11,7 +11,7 @@ function openModal() {
 document.getElementById("close-my-modal-btn").onclick = closeModal;
 
 function closeModal() {
-  document.getElementById("my-modal").classList.remove("open");
+  document.getElementById("my-modal").classList.remove("modal_open");
 }
 
 let form = document.getElementById("form");

@@ -1,5 +1,5 @@
 .profile__info {
-  width: 336px;
+  max-width: 336px;
   position: relative;
 }
 @media (max-width: 830px) {
@@ -9,6 +9,6 @@
 }
 @media (max-width: 500px) {
   .profile__info {
-    width: 270px;
+    max-width: 270px;
   }
 }

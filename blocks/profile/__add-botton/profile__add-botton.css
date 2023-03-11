@@ -11,8 +11,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  position: absolute;
-  right: 0;
 }
 .profile__add-botton:hover {
   opacity: 0.6;

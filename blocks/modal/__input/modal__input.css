@@ -1,35 +1,35 @@
 .modal__input {
-  min-height: 31px;
-  margin-bottom: 25px;
   border: 0;
-  border-bottom: 1px solid #000000;
-  outline-color: #498ef7;
+  min-height: 32px;
+  padding: 0;
+  margin-bottom: 23px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   display: block;
-  padding: 0;
-  width: 100%;
+  width: 358px;
 }
-.modal__input:last-child {
+.modal__input:nth-child(2) {
   margin-bottom: 48px;
 }
-
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .modal__input {
-    margin-bottom: 30px;
-    min-height: 30px;
-  }
-  .modal__input:last-child {
-    margin-bottom: 35px;
+    width: 300px;
   }
 }
-@media (max-width: 320px) {
+
+@media (max-width: 400px) {
   .modal__input {
-    margin-bottom: 22px;
+    width: 262px;
+  }
+}
+@media (max-width: 340px) {
+  .modal__input {
+    width: 242px;
     min-height: 34px;
   }
-  .modal__input:last-child {
+  .modal__input:nth-child(2) {
     margin-bottom: 45px;
   }
 }

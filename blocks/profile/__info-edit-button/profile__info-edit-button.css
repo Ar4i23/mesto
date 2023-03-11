@@ -20,12 +20,11 @@
 }
 @media (max-width: 830px) {
   .profile__info-edit-button {
-    right: -20px;
+    right: -40px;
   }
 }
 @media (max-width: 500px) {
   .profile__info-edit-button {
-    right: 10px;
     top: 4px;
   }
 }
@@ -33,7 +32,7 @@
   .profile__info-edit-button {
     width: 18px;
     height: 18px;
-    right: 13px;
+    right: -28px;
     top: 7px;
   }
 }

@@ -3,7 +3,7 @@
   width: 100%;
   margin: 0 auto;
   background: #000000;
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-size: 14px;
   color: #fff;
 }
