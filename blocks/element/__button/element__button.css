@@ -3,18 +3,13 @@
   height: 19px;
   border: none;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-right: 20px;
   background: transparent;
   background-image: url(../../../images/svg/like.svg);
   cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  right: 20px;
 }
 .element__button:hover {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 .element__button:focus {
   background-image: url(../../../images/svg/like-active.svg);

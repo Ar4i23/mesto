@@ -1,4 +1,5 @@
 .header__logo-link {
+  margin-bottom: 42px;
   display: block;
   max-width: 142px;
   min-height: 33px;
@@ -25,5 +26,6 @@
   .header__logo-link {
     margin-left: 27px;
     margin-top: 28px;
+    margin-bottom: 32px;
   }
 }

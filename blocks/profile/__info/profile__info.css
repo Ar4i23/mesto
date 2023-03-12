@@ -1,6 +1,7 @@
 .profile__info {
   max-width: 336px;
-  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 830px) {
   .profile__info {
