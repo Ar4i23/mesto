@@ -1,10 +1,7 @@
 .header__logo-link {
+  margin-top: 45px;
   margin-bottom: 42px;
   display: block;
-  max-width: 142px;
-  min-height: 33px;
-  background-image: url(../../../images/svg/logo.svg);
-  background-size: cover;
   color: #fff;
 }
 .header__logo-link:hover {
@@ -18,14 +15,8 @@
 @media (max-width: 500px) {
   .header__logo-link {
     max-width: 103px;
-    min-height: 24px;
     margin-left: 30px;
-  }
-}
-@media (max-width: 350px) {
-  .header__logo-link {
-    margin-left: 27px;
-    margin-top: 28px;
-    margin-bottom: 32px;
+    margin-top: 25px;
+    margin-bottom: 22px;
   }
 }

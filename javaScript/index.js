@@ -7,7 +7,7 @@ console.log(nameInputElement.value);
 document.getElementById('open-modal-btn').onclick = openModal;
 
 function openModal() {
-  document.getElementById('my-modal').classList.add('modal_open');
+  document.getElementById('my-modal').classList.add('modal_opened');
 
   const inputName = titleElement.textContent;
   nameInputElement.value = inputName;
@@ -18,7 +18,7 @@ function openModal() {
 document.getElementById('close-my-modal-btn').onclick = closeModal;
 
 function closeModal() {
-  document.getElementById('my-modal').classList.remove('modal_open');
+  document.getElementById('my-modal').classList.remove('modal_opened');
 }
 
 document.getElementById('form').addEventListener('submit', function (event) {
