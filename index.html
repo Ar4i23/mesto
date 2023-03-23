@@ -33,7 +33,6 @@
           <div class="profile__info-container">
             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
             <button
-              id="open-modal-btn"
               class="profile__info-edit-button"
               type="button"
               aria-label="Редактировать профиль"
@@ -47,81 +46,20 @@
         ></button>
       </section>
       <!-- блок  elements-->
-      <section class="elements">
-        <article class="element">
-          <img class="element__image" src="./images/bagan.jpeg" alt="Баган" />
-          <div class="element__group">
-            <h2 class="element__title">Баган, Мьянма</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/khram.jpeg"
-            alt="Гигантский храмовый комплекс Ангкор, Камбоджа"
-          />
-          <div class="element__group">
-            <h2 class="element__title">Ангкор, Камбоджа</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/Petra.jpeg"
-            alt="Древний город Петра, Иордания"
-          />
-          <div class="element__group">
-            <h2 class="element__title">Петра, Иордания</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/monastir.jpeg"
-            alt="Монастырский комплекс Метеоры, Греция"
-          />
-          <div class="element__group">
-            <h2 class="element__title">Метеоры, Греция</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/piramida-gizi.jpeg"
-            alt="Пирамиды Гизы, Египет"
-          />
-          <div class="element__group">
-            <h2 class="element__title">Пирамиды Гизы, Египет</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/risovaja.jpeg"
-            alt="Рисовые террасы в Му Кан Чай, Вьетнам"
-          />
-          <div class="element__group">
-            <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
-            <button class="element__button" type="button"></button>
-          </div>
-        </article>
-      </section>
+
+      <section class="elements"></section>
     </main>
+
     <!-- блок  modal-->
-    <section class="modal" id="my-modal">
+    <section class="modal" id="my-modal-edit">
       <div class="modal__container">
         <button
           class="modal__close"
-          id="close-my-modal-btn"
+          id="close-modal-edit"
           type="button"
         ></button>
         <h2 class="modal__title">Редактировать профиль</h2>
-        <form id="form" class="modal__form" name="profile-form">
+        <form class="modal__form" name="profile-form">
           <input
             name="name"
             type="text"
@@ -140,11 +78,169 @@
         </form>
       </div>
     </section>
+    <section class="modal" id="my-modal-create">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="close-modal-create"
+          type="button"
+        ></button>
+        <h2 class="modal__title">Новое место</h2>
+        <form id="modal-form-creat" class="modal__form" name="profile-form">
+          <input
+            name="name"
+            type="text"
+            class="modal__input modal__input_modal_naming"
+            required
+            placeholder="Название"
+          />
+          <input
+            name="about"
+            type="text"
+            class="modal__input modal__input_modal_linking"
+            required
+            placeholder="Ссылка на картинку"
+          />
+          <button class="modal__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+    <section class="modal" id="my-modal-image">
+      <div class="modal__container modal__container_img">
+        <button
+          class="modal__close"
+          id="close-modal-image"
+          type="button"
+        ></button>
+        <img src="#" alt="#" class="modal__img" />
+        <p class="modal__heading"></p>
+      </div>
+    </section>
     <!-- блок  footer-->
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+    <template id="elements">
+      <article class="element">
+        <button class="element__button-delete"></button>
+        <img class="element__image" src="./images/bagan.jpeg" alt="Баган" />
+        <div class="element__group">
+          <h2 class="element__title">Баган, Мьянма</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
 
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img
+          src="./images/khram.jpeg"
+          alt="Гигантский храмовый комплекс Ангкор, Камбоджа"
+          class="element__image"
+        />
+
+        <div class="element__group">
+          <h2 class="element__title">Ангкор, Камбоджа</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img
+          class="element__image"
+          src="./images/Petra.jpeg"
+          alt="Древний город Петра, Иордания"
+        />
+
+        <div class="element__group">
+          <h2 class="element__title">Петра, Иордания</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img
+          class="element__image"
+          src="./images/monastir.jpeg"
+          alt="Монастырский комплекс Метеоры, Греция"
+        />
+
+        <div class="element__group">
+          <h2 class="element__title">Метеоры, Греция</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img
+          class="element__image"
+          src="./images/piramida-gizi.jpeg"
+          alt="Пирамиды Гизы, Египет"
+        />
+
+        <div class="element__group">
+          <h2 class="element__title">Пирамиды Гизы, Египет</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img
+          class="element__image"
+          src="./images/risovaja.jpeg"
+          alt="Рисовые террасы в Му Кан Чай, Вьетнам"
+        />
+
+        <div class="element__group">
+          <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+    </template>
+    <template id="new-element">
+      <article class="element">
+        <button class="element__button-delete"></button>
+
+        <img class="element__image" src="#" alt="#" />
+
+        <div class="element__group">
+          <h2 class="element__title"></h2>
+          <button
+            class="element__button-like"
+            type="button"
+            aria-label="Кнопка лайк"
+          ></button>
+        </div>
+      </article>
+    </template>
     <script src="./javaScript/index.js"></script>
   </body>
 </html>
