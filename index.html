@@ -55,7 +55,7 @@
       <div class="modal__container">
         <button
           class="modal__close"
-          id="close-modal-edit"
+          id="modal__close_edit"
           type="button"
         ></button>
         <h2 class="modal__title">Редактировать профиль</h2>
@@ -86,18 +86,18 @@
           type="button"
         ></button>
         <h2 class="modal__title">Новое место</h2>
-        <form id="modal-form-creat" class="modal__form" name="profile-form">
+        <form class="modal__form modal__form_cread" name="profile-form">
           <input
             name="name"
             type="text"
-            class="modal__input modal__input_modal_naming"
+            class="modal__input modal__input_naming"
             required
             placeholder="Название"
           />
           <input
             name="about"
             type="text"
-            class="modal__input modal__input_modal_linking"
+            class="modal__input modal__input_linking"
             required
             placeholder="Ссылка на картинку"
           />
@@ -120,111 +120,6 @@
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-    <template id="elements">
-      <article class="element">
-        <button class="element__button-delete"></button>
-        <img class="element__image" src="./images/bagan.jpeg" alt="Баган" />
-        <div class="element__group">
-          <h2 class="element__title">Баган, Мьянма</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-
-      <article class="element">
-        <button class="element__button-delete"></button>
-
-        <img
-          src="./images/khram.jpeg"
-          alt="Гигантский храмовый комплекс Ангкор, Камбоджа"
-          class="element__image"
-        />
-
-        <div class="element__group">
-          <h2 class="element__title">Ангкор, Камбоджа</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__button-delete"></button>
-
-        <img
-          class="element__image"
-          src="./images/Petra.jpeg"
-          alt="Древний город Петра, Иордания"
-        />
-
-        <div class="element__group">
-          <h2 class="element__title">Петра, Иордания</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__button-delete"></button>
-
-        <img
-          class="element__image"
-          src="./images/monastir.jpeg"
-          alt="Монастырский комплекс Метеоры, Греция"
-        />
-
-        <div class="element__group">
-          <h2 class="element__title">Метеоры, Греция</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__button-delete"></button>
-
-        <img
-          class="element__image"
-          src="./images/piramida-gizi.jpeg"
-          alt="Пирамиды Гизы, Египет"
-        />
-
-        <div class="element__group">
-          <h2 class="element__title">Пирамиды Гизы, Египет</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-      <article class="element">
-        <button class="element__button-delete"></button>
-
-        <img
-          class="element__image"
-          src="./images/risovaja.jpeg"
-          alt="Рисовые террасы в Му Кан Чай, Вьетнам"
-        />
-
-        <div class="element__group">
-          <h2 class="element__title">Рисовые террасы,Вьетнам</h2>
-          <button
-            class="element__button-like"
-            type="button"
-            aria-label="Кнопка лайк"
-          ></button>
-        </div>
-      </article>
-    </template>
     <template id="new-element">
       <article class="element">
         <button class="element__button-delete"></button>

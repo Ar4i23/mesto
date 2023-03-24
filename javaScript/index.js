@@ -1,117 +1,158 @@
-const nameInputElement = document.querySelector('.modal__input_modal_name');
-const aboutInputElement = document.querySelector('.modal__input_modal_about');
+const inputEditName = document.querySelector('.modal__input_modal_name');
+const inputEditAbout = document.querySelector('.modal__input_modal_about');
+const inputCreadNaming = document.querySelector('.modal__input_naming');
+const inputCreadLinking = document.querySelector('.modal__input_linking');
 const titleElement = document.querySelector('.profile__info-title');
 const subtitleElement = document.querySelector('.profile__info-subtitle');
 const buttonEdit = document.querySelector('.profile__info-edit-button');
 const buttonCreat = document.querySelector('.profile__add-botton');
-const closeModalEdit = document.querySelector('#close-modal-edit');
-const closeModalCreate = document.querySelector('#close-modal-create');
-const closeModalImage = document.querySelector('#close-modal-image');
-const templateElements = document.querySelector('#elements').content;
+const buttonClose = document.querySelectorAll('.modal__close');
+const modalCreat = document.querySelector('#my-modal-create');
+const modalEdit = document.querySelector('#my-modal-edit');
+const modalImage = document.querySelector('#my-modal-image');
 const newElement = document.querySelector('#new-element').content;
 const elements = document.querySelector('.elements');
 const elementForm = document.querySelector('.modal__form');
-const htmlElement = templateElements.cloneNode(true);
-const buttonsLike = htmlElement.querySelectorAll('.element__button-like');
-const elementsImg = htmlElement.querySelectorAll('.element__image');
-const ButtonsDelete = htmlElement.querySelectorAll('.element__button-delete');
-const elementFormId = document.querySelector('#modal-form-creat');
-const openModalImage = document.querySelector('#my-modal-image');
-const modalImage = document.querySelector('.modal__img');
-const modalHeading = document.querySelector('.modal__heading');
-elements.append(htmlElement);
+const elementFormCread = document.querySelector('.modal__form_cread');
+const initialCards = [
+  {
+    name: 'New York',
+    link: 'https://rare-gallery.com/uploads/posts/934209-New-York-City-street-Times-Square.jpg',
+  },
+  {
+    name: 'Эстония',
+    link: 'https://tourism.interfax.ru/images/cms-image-000004067.jpg',
+  },
+  {
+    name: 'Озеро Рица',
+    link: 'https://vsegda-pomnim.com/uploads/posts/2022-03/1648751353_47-vsegda-pomnim-com-p-ozero-malaya-ritsa-abkhaziya-foto-48.jpg',
+  },
+  {
+    name: 'Азорские Острова',
+    link: 'https://vsegda-pomnim.com/uploads/posts/2022-03/1648627737_10-vsegda-pomnim-com-p-azorskie-ostrova-foto-12.jpg',
+  },
+  {
+    name: 'Голландия ',
+    link: 'https://img5.goodfon.ru/original/3000x2000/f/c5/amsterdam-vecher-ogni-kanal-gollandiia-niderlandy.jpg',
+  },
+  {
+    name: 'Исландия',
+    link: 'https://avatars.dzeninfra.ru/get-zen_doc/108872/pub_5ae10528bce67e5462ec162a_5ae1b64248c85ece27e55758/scale_1200',
+  },
+];
 
-buttonEdit.onclick = openModalEdit;
-buttonCreat.onclick = openModalCreate;
-closeModalEdit.onclick = closeModal;
-closeModalCreate.onclick = closeModal;
-closeModalImage.onclick = closeModal;
+// добавление готовых карточек
+initialCards.forEach(renderItem);
 
-function openModalEdit() {
-  document.querySelector('#my-modal-edit').classList.add('modal_opened');
-  nameInputElement.value = titleElement.textContent;
-  aboutInputElement.value = subtitleElement.textContent;
+function renderItem(item) {
+  const htmlElement = newElement.cloneNode(true);
+  const elementImg = htmlElement.querySelector('.element__image');
+  const elementTitle = htmlElement.querySelector('.element__title');
+  elementImg.src = item.link;
+  elementImg.alt = item.name;
+  elementTitle.textContent = item.name;
+  setEventListeners(htmlElement);
+
+  elements.append(htmlElement);
 }
 
-function openModalCreate() {
-  document.querySelector('#my-modal-create').classList.add('modal_opened');
+// генерация кнопок close  и навешивание обработчика клика
+buttonClose.forEach(handelCloseButton);
+
+function handelCloseButton(item) {
+  item.addEventListener('click', handelCloseModal);
 }
-
-function closeModal() {
-  document.querySelector('#my-modal-edit').classList.remove('modal_opened');
-  document.querySelector('#my-modal-create').classList.remove('modal_opened');
-  document
-    .querySelector('#my-modal-image')
-    .classList.remove('modal_opened-img');
+// закрытие попапов
+function handelCloseModal(event) {
+  if (
+    event.target.id === 'modal__close_edit' ||
+    event.currentTarget.parentNode.children[0].id === 'modal__close_edit'
+  ) {
+    modalEdit.classList.remove('modal_opened');
+  }
+  if (
+    event.target.id === 'close-modal-create' ||
+    event.target.parentNode.children[0].id === 'close-modal-create'
+  ) {
+    modalCreat.classList.remove('modal_opened');
+  }
+  if (event.target.id === 'close-modal-image') {
+    modalImage.classList.remove('modal_opened');
+  }
 }
-
-elementForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  const inputName = nameInputElement.value;
-  titleElement.textContent = inputName;
-  const inputAbout = aboutInputElement.value;
-  subtitleElement.textContent = inputAbout;
-  closeModal();
-});
-
-elementsImg.forEach(function (img) {
-  img.addEventListener('click', function (evt) {
-    const eventTargetSrc = evt.target.src;
-    openModalImage.classList.add('modal_opened-img');
-    modalImage.src = eventTargetSrc;
-    modalHeading.textContent = img.parentElement.textContent;
-  });
-});
-
-buttonsLike.forEach(function (button) {
-  button.addEventListener('click', function (evt) {
-    const eventTarget = evt.target;
-    eventTarget.classList.toggle('element__button-like_active');
-  });
-});
-
-ButtonsDelete.forEach(function (button) {
-  button.addEventListener('click', function (evt) {
-    const eventTarget = evt.currentTarget;
-    eventTarget.closest('.element').remove();
-  });
-});
-
-elementFormId.addEventListener('submit', function (event) {
-  event.preventDefault();
-  const namingInputElementCreat = document.querySelector(
-    '.modal__input_modal_naming'
-  );
-  const linkingInputElementCreat = document.querySelector(
-    '.modal__input_modal_linking'
-  );
-
-  const element = newElement.cloneNode(true);
-  const btnLike = element.querySelector('.element__button-like');
-  btnLike.addEventListener('click', handelLike);
-  function handelLike() {
-    btnLike.classList.toggle('element__button-like_active');
+// открытие попапа
+function handelOpenModal(event) {
+  if (event.target.className === 'profile__info-edit-button') {
+    modalEdit.classList.add('modal_opened');
+    addInfoInput();
   }
-  const btnDelete = element.querySelector('.element__button-delete');
-  btnDelete.addEventListener('click', handelDelete);
-  function handelDelete() {
-    btnDelete.closest('.element').remove();
+  if (event.target.className === 'profile__add-botton') {
+    modalCreat.classList.add('modal_opened');
+    inputCreadNaming.value = '';
+    inputCreadLinking.value = '';
+    createCard();
   }
-
-  const elImg = element.querySelector('.element__image');
-  elImg.addEventListener('click', handelOpenModal);
-  function handelOpenModal(event) {
-    openModalImage.classList.add('modal_opened-img');
-    modalImage.src = event.target.src;
-    modalHeading.textContent = event.target.alt;
+  if (event.target.className === 'element__image') {
+    modalImage.classList.add('modal_opened');
+    addImgAndTitle(event);
   }
-  element.querySelector('.element__title').textContent =
-    namingInputElementCreat.value;
-  element.querySelector('.element__image').src = linkingInputElementCreat.value;
-  element.querySelector('.element__image').alt = namingInputElementCreat.value;
-  elements.prepend(element);
+}
+// навешивание обработчиков клика на кнопки и картинки
+function setEventListeners(htmlElement) {
+  htmlElement
+    .querySelector('.element__button-delete')
+    .addEventListener('click', handelDelete);
+  htmlElement
+    .querySelector('.element__button-like')
+    .addEventListener('click', handelLike);
+  htmlElement
+    .querySelector('.element__image')
+    .addEventListener('click', handelOpenModal);
+  buttonEdit.addEventListener('click', handelOpenModal);
+  buttonCreat.addEventListener('click', handelOpenModal);
+}
+// удаление карточки
+function handelDelete(event) {
+  const parentNode = event.currentTarget.parentNode;
+  parentNode.closest('.element').remove();
+}
+// генератор лайков
+function handelLike(event) {
+  event.target.classList.toggle('element__button-like_active');
+}
+// добавление информации в input  и редактирование профиля
+function addInfoInput(event) {
+  inputEditName.value = titleElement.textContent;
+  inputEditAbout.value = subtitleElement.textContent;
 
-  linkingInputElementCreat.value = '';
-  namingInputElementCreat.value = '';
-  closeModal();
-});
+  elementForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    titleElement.textContent = inputEditName.value;
+    subtitleElement.textContent = inputEditAbout.value;
+    handelCloseModal(event);
+  });
+}
+// добавление картинки и заголовка в модальное окно изображений
+function addImgAndTitle(event) {
+  const srcImg = modalImage.querySelector('.modal__img');
+  const headingImg = modalImage.querySelector('.modal__heading');
+  srcImg.src = event.target.src;
+  srcImg.alt = event.target.alt;
+  headingImg.textContent = event.target.parentNode.textContent;
+}
+// создание новой карточки с обработчиками клика
+function createCard(event) {
+  elementFormCread.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const htmlElement = newElement.cloneNode(true);
+    const elementImg = htmlElement.querySelector('.element__image');
+    const elementTitle = htmlElement.querySelector('.element__title');
+    elementTitle.textContent = inputCreadNaming.value;
+    elementImg.src = inputCreadLinking.value;
+
+    setEventListeners(htmlElement);
+    elements.prepend(htmlElement);
+    handelCloseModal(event);
+  });
+}
