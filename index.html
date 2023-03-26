@@ -53,7 +53,7 @@
     <!-- блок  modal-->
     <section class="modal" id="my-modal-edit">
       <div class="modal__container">
-        <button class="modal__close" id="close-edit" type="button"></button>
+        <button class="modal__close" id="my-modal-edit" type="button"></button>
         <h2 class="modal__title">Редактировать профиль</h2>
         <form class="modal__form" id="my-modal-edit" name="profile-form">
           <input
@@ -76,7 +76,11 @@
     </section>
     <section class="modal" id="my-modal-create">
       <div class="modal__container">
-        <button class="modal__close" id="close-create" type="button"></button>
+        <button
+          class="modal__close"
+          id="my-modal-create"
+          type="button"
+        ></button>
         <h2 class="modal__title">Новое место</h2>
         <form
           class="modal__form modal__form_cread"
@@ -97,15 +101,13 @@
             required
             placeholder="Ссылка на картинку"
           />
-          <button class="modal__button modal__button_cread" type="submit">
-            Сохранить
-          </button>
+          <button class="modal__button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
     <section class="modal" id="my-modal-image">
       <div class="modal__container modal__container_img">
-        <button class="modal__close" id="close-image" type="button"></button>
+        <button class="modal__close" id="my-modal-image" type="button"></button>
         <img src="#" alt="#" class="modal__img" />
         <p class="modal__heading"></p>
       </div>
