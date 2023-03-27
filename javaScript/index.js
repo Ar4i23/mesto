@@ -1,18 +1,35 @@
+// inputs модального окна редактирования
 const inputEditName = document.querySelector('.modal__input_modal_name');
 const inputEditAbout = document.querySelector('.modal__input_modal_about');
+// inputs модального окна добавления новых карточек
 const inputCreadNaming = document.querySelector('.modal__input_naming');
 const inputCreadLinking = document.querySelector('.modal__input_linking');
+// заголовок и подзаголовок profile__info
 const titleElement = document.querySelector('.profile__info-title');
 const subtitleElement = document.querySelector('.profile__info-subtitle');
-const buttonEdit = document.querySelector('.profile__info-edit-button');
-const buttonCreat = document.querySelector('.profile__add-botton');
-const buttonCloseCreat = document.querySelector('#close-create');
-const buttonCloseEdit = document.querySelector('#close-edit');
+// кнопка открывания модального окна редактирования
+const buttonOpenEditProfileForm = document.querySelector(
+  '.profile__info-edit-button'
+);
+// кнопка открывания модального окна добавления новых карточек
+const buttonOpenAddCardForm = document.querySelector('.profile__add-botton');
+// кнопки закрытия модальных окон и сами окна и их элементы
+const buttonCloseAddCardForm = document.querySelector('#close-create');
+const popupAddCard = document.querySelector('#my-modal-create');
+const formAddCard = document.querySelector('.modal__form_cread');
+const buttonCloseEditProfileForm = document.querySelector('#close-edit');
+const popupEditProfile = document.querySelector('#my-modal-edit');
+const formEditProfile = document.querySelector('.modal__form_edit');
 const buttonCloseImg = document.querySelector('#close-image');
+const popupImage = document.querySelector('#my-modal-image');
+const srcImgModal = document.querySelector('.modal__img');
+const headingImg = document.querySelector('.modal__heading');
+// template карточка
 const newElement = document.querySelector('#new-element').content;
+// блок elements куда добавляются готовые карточки
 const elements = document.querySelector('.elements');
-const elementForm = document.querySelector('.modal__form');
-const elementFormCread = document.querySelector('.modal__form_cread');
+
+// массив с названием и ссылкой
 const initialCards = [
   {
     name: 'New York',
@@ -39,122 +56,120 @@ const initialCards = [
     link: 'https://avatars.dzeninfra.ru/get-zen_doc/108872/pub_5ae10528bce67e5462ec162a_5ae1b64248c85ece27e55758/scale_1200',
   },
 ];
-
-// добавление готовых карточек
+// навешивание обработчиков клика на кнопки
+buttonOpenEditProfileForm.addEventListener('click', openEditProfilePopup);
+buttonOpenAddCardForm.addEventListener('click', openAddCardPopup);
+buttonCloseAddCardForm.addEventListener('click', closeAddCardPopup);
+buttonCloseEditProfileForm.addEventListener('click', closeEditProfilePopup);
+buttonCloseImg.addEventListener('click', closeImagePopup);
+formAddCard.addEventListener('submit', cardFormSubmit);
+formEditProfile.addEventListener('submit', preservationOfTheInputData);
+// передача всех данных массива initialCards циклом forEach в функцию renderCard
 initialCards.forEach(renderCard);
 
-// // создание новой карточки с обработчиками клика
-function renderItem(item) {
+// // создание  карточек с обработчиками клика
+function createCard(item) {
   const htmlElement = newElement.cloneNode(true);
-  htmlElement.querySelector('.element__image').src = item.link;
-  htmlElement.querySelector('.element__image').alt = item.name;
+  const itemImg = htmlElement.querySelector('.element__image');
+  itemImg.src = item.link;
+  itemImg.alt = item.name;
   htmlElement.querySelector('.element__title').textContent = item.name;
   setEventListeners(htmlElement);
   return htmlElement;
 }
-function createCard(item) {
-  const newCard = newElement.cloneNode(true);
-  newCard.querySelector('.element__image').src = item.link;
-  newCard.querySelector('.element__image').alt = item.name;
-  newCard.querySelector('.element__title').textContent = item.name;
-  setEventListeners(newCard);
-  return newCard;
-}
-
+// добавление готовых карточек в блок elements
 function renderCard(item) {
   const cardElement = createCard(item);
-
   elements.prepend(cardElement);
 }
-
+// запись названия и ссылки ,отправка на добавление , закрытие попапа и очистка полей input
 function cardFormSubmit(evt) {
   evt.preventDefault();
   const item = { name: inputCreadNaming.value, link: inputCreadLinking.value };
   renderCard(item);
-  handelCloseModalCread();
+  closeAddCardPopup();
   evt.target.reset();
 }
-
-// закрытие попапов
-function closeModal(item) {
-  item.classList.remove('modal_opened');
+// добавление информации в input  при открытии модального окна
+function fillInEditProfileFormInputs(event) {
+  inputEditName.value = titleElement.textContent;
+  inputEditAbout.value = subtitleElement.textContent;
 }
-function handelCloseModalImg(event) {
-  const modalImage = document.querySelector('#my-modal-image');
-  closeModal(modalImage);
+// сохранение изменений profile__info и закрытие модального окна
+function preservationOfTheInputData(event) {
+  event.preventDefault();
+  titleElement.textContent = inputEditName.value;
+  subtitleElement.textContent = inputEditAbout.value;
+  closeEditProfilePopup();
 }
-function handelCloseModalEdit(event) {
-  const modalEdit = document.querySelector('#my-modal-edit');
-  closeModal(modalEdit);
-}
-function handelCloseModalCread(event) {
-  const modalCreat = document.querySelector('#my-modal-create');
-  closeModal(modalCreat);
-}
-
-// открытие попапа
+// открытие модальных окон
 function openModal(item) {
   item.classList.add('modal_opened');
 }
+// получение ссылки кнопки открытия модального окна Image,
+// запуск функции открытия с ссылкой на модальное окно Image
+// и запуск функции добавления ссылки на изображение и его название
+function openImagePopup(event) {
+  openModal(popupImage);
+  fillInImagePopup(event);
+}
+// получение ссылки кнопки открытия модального окна EditProfile,
+// запуск функции открытия с ссылкой на модальное окно EditProfile,
+// и запуск функции добавления данных в inputs
+function openEditProfilePopup(event) {
+  openModal(popupEditProfile);
+  fillInEditProfileFormInputs(event);
+}
+// получение ссылки кнопки открытия модального окна AddCard,
+// запуск функции открытия с ссылкой на модальное окно AddCard
+function openAddCardPopup(event) {
+  openModal(popupAddCard);
+}
 
-function handelOpenModalImg(event) {
-  const modalImage = document.querySelector('#my-modal-image');
-  openModal(modalImage);
-  addImgAndTitle(event);
+// закрытие модальных окон
+function closeModal(item) {
+  item.classList.remove('modal_opened');
 }
-function handelOpenModalEdit(event) {
-  const modalEdit = document.querySelector('#my-modal-edit');
-  openModal(modalEdit);
-  addInfoInput(event);
+// получение ссылки кнопки закрытия модального окна Image и
+// запуск функции закратия с ссылкой на модальное окно Image
+function closeImagePopup(event) {
+  closeModal(popupImage);
 }
-function handelOpenModalCread(event) {
-  const modalCreat = document.querySelector('#my-modal-create');
-  openModal(modalCreat);
+// получение ссылки кнопки закрытия модального окна EditProfile и
+// запуск функции закратия с ссылкой на модальное окно EditProfile
+function closeEditProfilePopup(event) {
+  closeModal(popupEditProfile);
+}
+// получение ссылки кнопки закрытия модального окна AddCard и
+// запуск функции закратия с ссылкой на модальное окно AddCard
+function closeAddCardPopup(event) {
+  closeModal(popupAddCard);
 }
 
-// навешивание обработчиков клика на кнопки и картинки
+// навешивание обработчиков клика на кнопки и картинки готовой карточки
 function setEventListeners(htmlElement) {
   htmlElement
     .querySelector('.element__button-delete')
-    .addEventListener('click', handelDelete);
+    .addEventListener('click', deleteCard);
   htmlElement
     .querySelector('.element__button-like')
-    .addEventListener('click', handelLike);
+    .addEventListener('click', toggleLike);
   htmlElement
     .querySelector('.element__image')
-    .addEventListener('click', handelOpenModalImg);
-  buttonEdit.addEventListener('click', handelOpenModalEdit);
-  buttonCreat.addEventListener('click', handelOpenModalCread);
-  elementFormCread.addEventListener('submit', cardFormSubmit);
-  buttonCloseCreat.addEventListener('click', handelCloseModalCread);
-  buttonCloseEdit.addEventListener('click', handelCloseModalEdit);
-  buttonCloseImg.addEventListener('click', handelCloseModalImg);
+    .addEventListener('click', openImagePopup);
 }
 // удаление карточки
-function handelDelete(event) {
+function deleteCard(event) {
   const parentNode = event.currentTarget.parentNode;
   parentNode.closest('.element').remove();
 }
 // генератор лайков
-function handelLike(event) {
+function toggleLike(event) {
   event.target.classList.toggle('element__button-like_active');
 }
-// добавление информации в input  и редактирование профиля
-function addInfoInput(event) {
-  inputEditName.value = titleElement.textContent;
-  inputEditAbout.value = subtitleElement.textContent;
 
-  elementForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    titleElement.textContent = inputEditName.value;
-    subtitleElement.textContent = inputEditAbout.value;
-    handelCloseModalEdit();
-  });
-}
 // добавление картинки и заголовка в модальное окно изображений
-function addImgAndTitle(event) {
-  const srcImgModal = document.querySelector('.modal__img');
-  const headingImg = document.querySelector('.modal__heading');
+function fillInImagePopup(event) {
   srcImgModal.src = event.target.src;
   srcImgModal.alt = event.target.alt;
   headingImg.textContent = event.target.parentNode.textContent;
