@@ -1,0 +1,13 @@
+.modal__error {
+  display: block;
+  margin: 5px 0 25px;
+  color: red;
+}
+.modal__error:nth-child(4) {
+  margin-bottom: 48px;
+}
+@media (max-width: 340px) {
+  .modal__error:nth-child(4) {
+    margin-bottom: 45px;
+  }
+}

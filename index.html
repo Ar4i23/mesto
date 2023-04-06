@@ -52,22 +52,33 @@
       <div class="modal__container">
         <button class="modal__close" id="close-edit" type="button"></button>
         <h2 class="modal__title">Редактировать профиль</h2>
-        <form class="modal__form modal__form_edit" name="profile-form">
+        <form class="modal__form modal__form_edit" name="user" novalidate>
           <input
-            name="name"
+            id="user-name"
+            name="user-name"
             type="text"
             class="modal__input modal__input_modal_name"
             placeholder="Имя"
             required
+            minlength="2"
+            maxlength="40"
           />
+          <span class="modal__error" id="user-name-error"></span>
           <input
+            id="about"
             name="about"
             type="text"
             class="modal__input modal__input_modal_about"
             placeholder="Обо мне"
             required
+            minlength="2"
+            maxlength="200"
           />
-          <button class="modal__button" type="submit">Сохранить</button>
+
+          <span class="modal__error" id="about-error"></span>
+          <button class="modal__button modal__button-edit" type="submit">
+            Сохранить
+          </button>
         </form>
       </div>
     </section>
@@ -75,22 +86,29 @@
       <div class="modal__container">
         <button class="modal__close" id="close-create" type="button"></button>
         <h2 class="modal__title">Новое место</h2>
-        <form class="modal__form modal__form_cread" name="profile-form">
+        <form class="modal__form modal__form_cread" name="new" novalidate>
           <input
+            id="name-card"
             name="name"
             type="text"
             class="modal__input modal__input_naming"
             placeholder="Название"
             required
+            minlength="2"
+            maxlength="30"
           />
+          <span class="modal__error" id="name-card-error"></span>
           <input
-            name="about"
-            type="text"
+            id="link"
+            name="link"
+            type="url"
             class="modal__input modal__input_linking"
             placeholder="Ссылка на картинку"
             required
           />
-          <button class="modal__button modal__button_cread" type="submit">
+
+          <span class="modal__error" id="link-error"></span>
+          <button class="modal__button modal__button-cread" type="submit">
             Сохранить
           </button>
         </form>
@@ -121,6 +139,8 @@
         </div>
       </article>
     </template>
-    <script src="./javaScript/index.js"></script>
+
+    <script type="module" src="./javaScript/index.js"></script>
+    <script src="./javaScript/validate.js"></script>
   </body>
 </html>

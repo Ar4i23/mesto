@@ -1,7 +1,7 @@
-.modal__input {
+.modal__input_type_error {
   border: 0;
   padding: 7px 0 7px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid red;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -10,18 +10,18 @@
 }
 
 @media (max-width: 550px) {
-  .modal__input {
+  .modal__input_type_error {
     width: 300px;
   }
 }
 
 @media (max-width: 400px) {
-  .modal__input {
+  .modal__input_type_error {
     width: 262px;
   }
 }
 @media (max-width: 340px) {
-  .modal__input {
+  .modal__input_type_error {
     width: 242px;
   }
 }
