@@ -67,7 +67,7 @@ formEditProfile.addEventListener('submit', preservationOfTheInputData);
 // передача всех данных массива initialCards циклом forEach в функцию renderCard
 initialCards.forEach(renderCard);
 
-// // создание  карточек с обработчиками клика
+// создание  карточек с обработчиками клика
 function createCard(item) {
   const htmlElement = newElement.cloneNode(true);
   const itemImg = htmlElement.querySelector('.element__image');
@@ -128,8 +128,6 @@ function openEditProfilePopup(event) {
 function openAddCardPopup(event) {
   openModal(popupAddCard);
   resetInput(validationConfig);
-  // disableButton(validationConfig);
-  // enableValidation(() => false);
 }
 
 // закрытие модальных окон
@@ -139,15 +137,15 @@ function closeModal(item) {
   if (item.id === 'my-modal-create') {
     clearInputAddPopup(inputCreadNaming, inputCreadLinking);
   }
-  if (item.id === 'my-modal-edit') {
-  }
 }
+// закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.modal_opened');
     closeModal(popup);
   }
 }
+// закрытие попапа при нажатии на Overlay
 function closePopupOverlay(evt) {
   if (evt.currentTarget === evt.target) {
     const popup = document.querySelector('.modal_opened');
@@ -168,8 +166,6 @@ function closeEditProfilePopup(event) {
 // запуск функции закратия с ссылкой на модальное окно AddCard
 function closeAddCardPopup(event) {
   closeModal(popupAddCard);
-
-  // enableValidation(() => false);
 }
 
 // навешивание обработчиков клика на кнопки и картинки готовой карточки
@@ -200,32 +196,30 @@ function fillInImagePopup(event) {
   srcImgModal.alt = event.target.alt;
   headingImg.textContent = event.target.parentNode.textContent;
 }
+// очистка полей ввода модального окна AddCard
 const clearInputAddPopup = (inputCreadNaming, inputCreadLinking) => {
   inputCreadNaming.value = '';
   inputCreadLinking.value = '';
 };
 
-const resetInput = ({ inputSelector, formSelector, inputErrorClass }) => {
+// очистка ошибок и устанавка не рабочей кнопки
+const resetInput = ({
+  formSelector,
+  inputSelector,
+  inputErrorClass,
+  submitButtonSelector,
+  inactiveButtonClass,
+}) => {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
+    const buttonsForm = form.querySelector(submitButtonSelector);
+    buttonsForm.classList.add(inactiveButtonClass);
+    buttonsForm.setAttribute('disabled', true);
     const formInputs = Array.from(form.querySelectorAll(inputSelector));
     formInputs.forEach((input) => {
-      input.classList.remove('modal__input_error');
-      input.classList.add('modal__input');
       const errorContainer = document.querySelector(`#${input.id}-error`);
       errorContainer.textContent = '';
-      console.log(errorContainer);
+      input.classList.remove(inputErrorClass);
     });
   });
-  // const inputError = forms.querySelector(inputErrorClass);
-  // const inputs = Array.from(document.querySelectorAll(inputSelector));
-  // inputs.forEach((input) => {
-  // console.log(forms);
-  // if (input.validity.valid) {
-  //   console.log('ok');
-  // } else {
-  //   const errorContainer = document.querySelector(`#${input.id}-error`);
-  //   console.log(errorContainer);
-  // }
-  // });
 };
