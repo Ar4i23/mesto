@@ -205,15 +205,27 @@ const clearInputAddPopup = (inputCreadNaming, inputCreadLinking) => {
   inputCreadLinking.value = '';
 };
 
-const resetInput = ({ inputSelector }) => {
-  const inputs = Array.from(document.querySelectorAll(inputSelector));
-  inputs.forEach((input) => {
-    console.log();
-    if (input.checkValidity()) {
-      console.log('ok');
-    } else {
+const resetInput = ({ inputSelector, formSelector, inputErrorClass }) => {
+  const forms = Array.from(document.querySelectorAll(formSelector));
+  forms.forEach((form) => {
+    const formInputs = Array.from(form.querySelectorAll(inputSelector));
+    formInputs.forEach((input) => {
+      input.classList.remove('modal__input_error');
+      input.classList.add('modal__input');
       const errorContainer = document.querySelector(`#${input.id}-error`);
+      errorContainer.textContent = '';
       console.log(errorContainer);
-    }
+    });
   });
+  // const inputError = forms.querySelector(inputErrorClass);
+  // const inputs = Array.from(document.querySelectorAll(inputSelector));
+  // inputs.forEach((input) => {
+  // console.log(forms);
+  // if (input.validity.valid) {
+  //   console.log('ok');
+  // } else {
+  //   const errorContainer = document.querySelector(`#${input.id}-error`);
+  //   console.log(errorContainer);
+  // }
+  // });
 };

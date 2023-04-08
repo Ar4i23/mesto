@@ -41,7 +41,7 @@ const checkInputValidity = (input, rest) => {
   const currentInputErrorContainer = document.querySelector(
     `#${input.id}-error`
   );
-  if (input.checkValidity()) {
+  if (input.validity.valid) {
     currentInputErrorContainer.textContent = '';
     removeRedLine(input, rest);
   } else {
