@@ -1,3 +1,13 @@
+import enableValidation from '/javaScript/validate.js';
+const validationConfig = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__button',
+  inactiveButtonClass: 'modal__button_invalid',
+  activeButtonClass: 'modal__button',
+  inputErrorClass: 'modal__input_error',
+};
+enableValidation(validationConfig);
 // inputs модального окна редактирования
 const inputEditName = document.querySelector('.modal__input_modal_name');
 const inputEditAbout = document.querySelector('.modal__input_modal_about');
@@ -91,13 +101,13 @@ function cardFormSubmit(evt) {
   evt.target.reset();
 }
 // добавление информации в input  при открытии модального окна
-function fillInEditProfileFormInputs(evt) {
+function fillInEditProfileFormInputs(event) {
   inputEditName.value = titleElement.textContent;
   inputEditAbout.value = subtitleElement.textContent;
 }
 // сохранение изменений profile__info и закрытие модального окна
-function preservationOfTheInputData(evt) {
-  evt.preventDefault();
+function preservationOfTheInputData(event) {
+  event.preventDefault();
   titleElement.textContent = inputEditName.value;
   subtitleElement.textContent = inputEditAbout.value;
   closeEditProfilePopup();
@@ -111,23 +121,25 @@ function openModal(item) {
 // получение ссылки кнопки открытия модального окна Image,
 // запуск функции открытия с ссылкой на модальное окно Image
 // и запуск функции добавления ссылки на изображение и его название
-function openImagePopup(evt) {
+function openImagePopup(event) {
   openModal(popupImage);
-  fillInImagePopup(evt);
+  fillInImagePopup(event);
 }
 // получение ссылки кнопки открытия модального окна EditProfile,
 // запуск функции открытия с ссылкой на модальное окно EditProfile,
 // и запуск функции добавления данных в inputs
-function openEditProfilePopup(evt) {
+function openEditProfilePopup(event) {
   openModal(popupEditProfile);
-  fillInEditProfileFormInputs(evt);
-  enableValidation(validationConfig);
+  fillInEditProfileFormInputs(event);
+  resetInput(validationConfig);
 }
 // получение ссылки кнопки открытия модального окна AddCard,
 // запуск функции открытия с ссылкой на модальное окно AddCard
-function openAddCardPopup(evt) {
+function openAddCardPopup(event) {
   openModal(popupAddCard);
-  enableValidation(validationConfig);
+  resetInput(validationConfig);
+  // disableButton(validationConfig);
+  // enableValidation(() => false);
 }
 
 // закрытие модальных окон
@@ -136,6 +148,8 @@ function closeModal(item) {
   document.removeEventListener('keydown', closePopupEsc);
   if (item.id === 'my-modal-create') {
     clearInputAddPopup(inputCreadNaming, inputCreadLinking);
+  }
+  if (item.id === 'my-modal-edit') {
   }
 }
 function closePopupEsc(evt) {
@@ -152,18 +166,20 @@ function closePopupOverlay(evt) {
 }
 // получение ссылки кнопки закрытия модального окна Image и
 // запуск функции закратия с ссылкой на модальное окно Image
-function closeImagePopup(evt) {
+function closeImagePopup(event) {
   closeModal(popupImage);
 }
 // получение ссылки кнопки закрытия модального окна EditProfile и
 // запуск функции закратия с ссылкой на модальное окно EditProfile
-function closeEditProfilePopup(evt) {
+function closeEditProfilePopup(event) {
   closeModal(popupEditProfile);
 }
 // получение ссылки кнопки закрытия модального окна AddCard и
 // запуск функции закратия с ссылкой на модальное окно AddCard
-function closeAddCardPopup(evt) {
+function closeAddCardPopup(event) {
   closeModal(popupAddCard);
+
+  // enableValidation(() => false);
 }
 
 // навешивание обработчиков клика на кнопки и картинки готовой карточки
@@ -179,22 +195,35 @@ function setEventListeners(htmlElement) {
     .addEventListener('click', openImagePopup);
 }
 // удаление карточки
-function deleteCard(evt) {
-  const parentNode = evt.currentTarget.parentNode;
+function deleteCard(event) {
+  const parentNode = event.currentTarget.parentNode;
   parentNode.closest('.element').remove();
 }
 // генератор лайков
-function toggleLike(evt) {
-  evt.target.classList.toggle('element__button-like_active');
+function toggleLike(event) {
+  event.target.classList.toggle('element__button-like_active');
 }
 
 // добавление картинки и заголовка в модальное окно изображений
-function fillInImagePopup(evt) {
-  srcImgModal.src = evt.target.src;
-  srcImgModal.alt = evt.target.alt;
-  headingImg.textContent = evt.target.parentNode.textContent;
+function fillInImagePopup(event) {
+  srcImgModal.src = event.target.src;
+  srcImgModal.alt = event.target.alt;
+  headingImg.textContent = event.target.parentNode.textContent;
 }
 const clearInputAddPopup = (inputCreadNaming, inputCreadLinking) => {
   inputCreadNaming.value = '';
   inputCreadLinking.value = '';
+};
+
+const resetInput = ({ inputSelector }) => {
+  const inputs = Array.from(document.querySelectorAll(inputSelector));
+  inputs.forEach((input) => {
+    console.log();
+    if (input.checkValidity()) {
+      console.log('ok');
+    } else {
+      const errorContainer = document.querySelector(`#${input.id}-error`);
+      console.log(errorContainer);
+    }
+  });
 };

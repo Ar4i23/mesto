@@ -1,47 +1,38 @@
-const validationConfig = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__button',
-  inactiveButtonClass: 'modal__button_invalid',
-  inputErrorClass: 'modal__input_type_error',
-  activeButtonClass: 'modal__button',
-};
 const enableValidation = ({ formSelector, ...rest }) => {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
     form.addEventListener('submit', (evt) => {
-      evt.preventDefaut();
+      evt.preventDefault();
     });
-    setEventListenersValid(form, rest);
+    setEventListenersValidation(form, rest);
   });
 };
 
-const setEventListenersValid = (
-  form,
+const setEventListenersValidation = (
+  formToValidate,
   { inputSelector, submitButtonSelector, ...rest }
 ) => {
-  const formInputs = Array.from(form.querySelectorAll(inputSelector));
-  const formButtom = form.querySelector(submitButtonSelector);
-  if (formButtom.classList[1] === 'modal__button-cread') {
-    disableButton(formButtom, rest);
+  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector));
+  const formButton = formToValidate.querySelector(submitButtonSelector);
+  if (formButton.id === 'cread') {
+    disableButton(formButton, rest);
   }
-
   formInputs.forEach((input) => {
-    input.addEventListener('input', () => {});
-    checkInputValidity(input, rest);
-    if (hasInvalidInput(formInputs)) {
-      disableButton(formButtom, rest);
-    } else {
-      enableButton(formButtom, rest);
-    }
+    input.addEventListener('input', () => {
+      checkInputValidity(input, rest);
+      if (hasInvalidInput(formInputs)) {
+        disableButton(formButton, rest);
+      } else {
+        enableButton(formButton, rest);
+      }
+    });
   });
 };
 
-const checkInputValidity = (input, { errorClass, ...rest }) => {
+const checkInputValidity = (input, rest) => {
   const currentInputErrorContainer = document.querySelector(
     `#${input.id}-error`
   );
-
   if (input.checkValidity()) {
     currentInputErrorContainer.textContent = '';
     removeRedLine(input, rest);
@@ -51,27 +42,25 @@ const checkInputValidity = (input, { errorClass, ...rest }) => {
   }
 };
 const addRedLine = (input, { inputErrorClass }) => {
+  input.classList.remove('modal__input');
   input.classList.add(inputErrorClass);
 };
 const removeRedLine = (input, { inputErrorClass }) => {
-  // console.log(input);
+  input.classList.add('modal__input');
   input.classList.remove(inputErrorClass);
 };
-
 const hasInvalidInput = (formInputs) => {
-  return formInputs.some((item) => !item.checkValidity());
+  return formInputs.some((item) => !item.validity.valid);
+};
+const enableButton = (button, { inactiveButtonClass, activeButtonClass }) => {
+  button.classList.remove(inactiveButtonClass);
+  button.classList.add(activeButtonClass);
+  button.removeAttribute('disabled');
+};
+const disableButton = (button, { inactiveButtonClass, activeButtonClass }) => {
+  button.classList.add(inactiveButtonClass);
+  button.classList.remove(activeButtonClass);
+  button.setAttribute('disabled', true);
 };
 
-const enableButton = (buttom, { inactiveButtonClass, activeButtonClass }) => {
-  buttom.classList.add(activeButtonClass);
-  buttom.classList.remove(inactiveButtonClass);
-  buttom.removeAttribute('disabled');
-};
-
-const disableButton = (buttom, { inactiveButtonClass, activeButtonClass }) => {
-  buttom.classList.remove(activeButtonClass);
-  buttom.classList.add(inactiveButtonClass);
-  buttom.setAttribute('disabled', true);
-};
-
-enableValidation(validationConfig);
+export default enableValidation;
