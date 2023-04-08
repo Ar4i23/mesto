@@ -1,13 +1,3 @@
-import enableValidation from '/javaScript/validate.js';
-const validationConfig = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__button',
-  inactiveButtonClass: 'modal__button_invalid',
-  activeButtonClass: 'modal__button',
-  inputErrorClass: 'modal__input_error',
-};
-enableValidation(validationConfig);
 // inputs модального окна редактирования
 const inputEditName = document.querySelector('.modal__input_modal_name');
 const inputEditAbout = document.querySelector('.modal__input_modal_about');

@@ -1,3 +1,11 @@
+const validationConfig = {
+  formSelector: '.modal__form',
+  inputSelector: '.modal__input',
+  submitButtonSelector: '.modal__button',
+  inactiveButtonClass: 'modal__button_invalid',
+  activeButtonClass: 'modal__button',
+  inputErrorClass: 'modal__input_error',
+};
 const enableValidation = ({ formSelector, ...rest }) => {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
@@ -63,4 +71,7 @@ const disableButton = (button, { inactiveButtonClass, activeButtonClass }) => {
   button.setAttribute('disabled', true);
 };
 
-export default enableValidation;
+// export default enableValidation;
+// import enableValidation from '/javaScript/validate.js';
+
+enableValidation(validationConfig);
