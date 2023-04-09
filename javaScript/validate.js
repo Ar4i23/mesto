@@ -60,15 +60,13 @@ const hasInvalidInput = (formInputs) => {
   return formInputs.some((item) => !item.validity.valid);
 };
 // установка валидной кнопки
-const enableButton = (button, { inactiveButtonClass, activeButtonClass }) => {
+const enableButton = (button, { inactiveButtonClass }) => {
   button.classList.remove(inactiveButtonClass);
-  button.classList.add(activeButtonClass);
   button.removeAttribute('disabled');
 };
 // установка не валидной кнопки
-const disableButton = (button, { inactiveButtonClass, activeButtonClass }) => {
+const disableButton = (button, { inactiveButtonClass }) => {
   button.classList.add(inactiveButtonClass);
-  button.classList.remove(activeButtonClass);
   button.setAttribute('disabled', true);
 };
 

@@ -28,6 +28,8 @@ const headingImg = document.querySelector('.modal__heading');
 const newElement = document.querySelector('#new-element').content;
 // блок elements куда добавляются готовые карточки
 const elements = document.querySelector('.elements');
+//все попапы
+const popups = document.querySelectorAll('.modal');
 
 // массив с названием и ссылкой
 const initialCards = [
@@ -59,9 +61,6 @@ const initialCards = [
 // навешивание обработчиков клика на кнопки
 buttonOpenEditProfileForm.addEventListener('click', openEditProfilePopup);
 buttonOpenAddCardForm.addEventListener('click', openAddCardPopup);
-buttonCloseAddCardForm.addEventListener('click', closeAddCardPopup);
-buttonCloseEditProfileForm.addEventListener('click', closeEditProfilePopup);
-buttonCloseImg.addEventListener('click', closeImagePopup);
 formAddCard.addEventListener('submit', cardFormSubmit);
 formEditProfile.addEventListener('submit', preservationOfTheInputData);
 // передача всех данных массива initialCards циклом forEach в функцию renderCard
@@ -87,7 +86,8 @@ function cardFormSubmit(evt) {
   evt.preventDefault();
   const item = { name: inputCreadNaming.value, link: inputCreadLinking.value };
   renderCard(item);
-  closeAddCardPopup();
+  const modal = evt.target.closest('.modal');
+  closeModal(modal);
   evt.target.reset();
 }
 // добавление информации в input  при открытии модального окна
@@ -96,11 +96,12 @@ function fillInEditProfileFormInputs(event) {
   inputEditAbout.value = subtitleElement.textContent;
 }
 // сохранение изменений profile__info и закрытие модального окна
-function preservationOfTheInputData(event) {
-  event.preventDefault();
+function preservationOfTheInputData(evt) {
+  evt.preventDefault();
   titleElement.textContent = inputEditName.value;
   subtitleElement.textContent = inputEditAbout.value;
-  closeEditProfilePopup();
+  const modal = event.target.closest('.modal');
+  closeModal(modal);
 }
 // открытие модальных окон
 function openModal(item) {
@@ -111,32 +112,43 @@ function openModal(item) {
 // получение ссылки кнопки открытия модального окна Image,
 // запуск функции открытия с ссылкой на модальное окно Image
 // и запуск функции добавления ссылки на изображение и его название
-function openImagePopup(event) {
+function openImagePopup(evt) {
   openModal(popupImage);
-  fillInImagePopup(event);
+  fillInImagePopup(evt);
 }
 // получение ссылки кнопки открытия модального окна EditProfile,
 // запуск функции открытия с ссылкой на модальное окно EditProfile,
 // и запуск функции добавления данных в inputs
-function openEditProfilePopup(event) {
+function openEditProfilePopup(evt) {
   openModal(popupEditProfile);
-  fillInEditProfileFormInputs(event);
+  fillInEditProfileFormInputs(evt);
   resetInput(validationConfig);
 }
 // получение ссылки кнопки открытия модального окна AddCard,
 // запуск функции открытия с ссылкой на модальное окно AddCard
-function openAddCardPopup(event) {
+function openAddCardPopup(evt) {
   openModal(popupAddCard);
   resetInput(validationConfig);
 }
+
+//проверка попапов на наличие класса открытия попапа и кнопок закрытия
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    console.log();
+    if (evt.target.classList.contains('modal_opened')) {
+      closeModal(popup);
+    }
+    if (evt.target.classList.contains('modal__close')) {
+      closeModal(popup);
+    }
+  });
+});
 
 // закрытие модальных окон
 function closeModal(item) {
   item.classList.remove('modal_opened');
   document.removeEventListener('keydown', closePopupEsc);
-  if (item.id === 'my-modal-create') {
-    clearInputAddPopup(inputCreadNaming, inputCreadLinking);
-  }
+  clearInputPopup(validationConfig);
 }
 // закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
@@ -148,24 +160,9 @@ function closePopupEsc(evt) {
 // закрытие попапа при нажатии на Overlay
 function closePopupOverlay(evt) {
   if (evt.currentTarget === evt.target) {
-    const popup = document.querySelector('.modal_opened');
-    closeModal(popup);
+    closeModal(evt.target);
+    evt.target.removeEventListener('click', closePopupOverlay);
   }
-}
-// получение ссылки кнопки закрытия модального окна Image и
-// запуск функции закратия с ссылкой на модальное окно Image
-function closeImagePopup(event) {
-  closeModal(popupImage);
-}
-// получение ссылки кнопки закрытия модального окна EditProfile и
-// запуск функции закратия с ссылкой на модальное окно EditProfile
-function closeEditProfilePopup(event) {
-  closeModal(popupEditProfile);
-}
-// получение ссылки кнопки закрытия модального окна AddCard и
-// запуск функции закратия с ссылкой на модальное окно AddCard
-function closeAddCardPopup(event) {
-  closeModal(popupAddCard);
 }
 
 // навешивание обработчиков клика на кнопки и картинки готовой карточки
@@ -181,25 +178,30 @@ function setEventListeners(htmlElement) {
     .addEventListener('click', openImagePopup);
 }
 // удаление карточки
-function deleteCard(event) {
-  const parentNode = event.currentTarget.parentNode;
-  parentNode.closest('.element').remove();
+function deleteCard(evt) {
+  const card = evt.target.closest('.element');
+  card.remove();
 }
 // генератор лайков
-function toggleLike(event) {
-  event.target.classList.toggle('element__button-like_active');
+function toggleLike(evt) {
+  evt.target.classList.toggle('element__button-like_active');
 }
 
 // добавление картинки и заголовка в модальное окно изображений
-function fillInImagePopup(event) {
-  srcImgModal.src = event.target.src;
-  srcImgModal.alt = event.target.alt;
+function fillInImagePopup(evt) {
+  srcImgModal.src = evt.target.src;
+  srcImgModal.alt = evt.target.alt;
   headingImg.textContent = event.target.parentNode.textContent;
 }
-// очистка полей ввода модального окна AddCard
-const clearInputAddPopup = (inputCreadNaming, inputCreadLinking) => {
-  inputCreadNaming.value = '';
-  inputCreadLinking.value = '';
+// очистка полей ввода модальньных  окон
+const clearInputPopup = ({ formSelector, inputSelector }) => {
+  const formsModal = Array.from(document.querySelectorAll(formSelector));
+  formsModal.forEach((form) => {
+    const formInputs = Array.from(form.querySelectorAll(inputSelector));
+    formInputs.forEach((input) => {
+      input.value = '';
+    });
+  });
 };
 
 // очистка ошибок и устанавка не рабочей кнопки
@@ -212,14 +214,14 @@ const resetInput = ({
 }) => {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
-    const buttonsForm = form.querySelector(submitButtonSelector);
-    buttonsForm.classList.add(inactiveButtonClass);
-    buttonsForm.setAttribute('disabled', true);
     const formInputs = Array.from(form.querySelectorAll(inputSelector));
     formInputs.forEach((input) => {
       const errorContainer = document.querySelector(`#${input.id}-error`);
       errorContainer.textContent = '';
       input.classList.remove(inputErrorClass);
     });
+    const buttonsForm = form.querySelector(submitButtonSelector);
+    buttonsForm.classList.add(inactiveButtonClass);
+    buttonsForm.setAttribute('disabled', true);
   });
 };
