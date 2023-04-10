@@ -91,7 +91,7 @@ function cardFormSubmit(evt) {
   evt.target.reset();
 }
 // добавление информации в input  при открытии модального окна
-function fillInEditProfileFormInputs(event) {
+function fillInEditProfileFormInputs(evt) {
   inputEditName.value = titleElement.textContent;
   inputEditAbout.value = subtitleElement.textContent;
 }
@@ -100,14 +100,13 @@ function preservationOfTheInputData(evt) {
   evt.preventDefault();
   titleElement.textContent = inputEditName.value;
   subtitleElement.textContent = inputEditAbout.value;
-  const modal = event.target.closest('.modal');
+  const modal = evt.target.closest('.modal');
   closeModal(modal);
 }
 // открытие модальных окон
 function openModal(item) {
   item.classList.add('modal_opened');
   document.addEventListener('keydown', closePopupEsc);
-  item.addEventListener('click', closePopupOverlay);
 }
 // получение ссылки кнопки открытия модального окна Image,
 // запуск функции открытия с ссылкой на модальное окно Image
@@ -121,20 +120,19 @@ function openImagePopup(evt) {
 // и запуск функции добавления данных в inputs
 function openEditProfilePopup(evt) {
   openModal(popupEditProfile);
+  resetErrorInput(validationConfig);
   fillInEditProfileFormInputs(evt);
-  resetInput(validationConfig);
 }
 // получение ссылки кнопки открытия модального окна AddCard,
 // запуск функции открытия с ссылкой на модальное окно AddCard
 function openAddCardPopup(evt) {
   openModal(popupAddCard);
-  resetInput(validationConfig);
+  resetErrorInput(validationConfig);
 }
 
 //проверка попапов на наличие класса открытия попапа и кнопок закрытия
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    console.log();
     if (evt.target.classList.contains('modal_opened')) {
       closeModal(popup);
     }
@@ -148,20 +146,13 @@ popups.forEach((popup) => {
 function closeModal(item) {
   item.classList.remove('modal_opened');
   document.removeEventListener('keydown', closePopupEsc);
-  clearInputPopup(validationConfig);
+  item.removeEventListener('mousedown', closeModal);
 }
 // закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.modal_opened');
     closeModal(popup);
-  }
-}
-// закрытие попапа при нажатии на Overlay
-function closePopupOverlay(evt) {
-  if (evt.currentTarget === evt.target) {
-    closeModal(evt.target);
-    evt.target.removeEventListener('click', closePopupOverlay);
   }
 }
 
@@ -191,21 +182,11 @@ function toggleLike(evt) {
 function fillInImagePopup(evt) {
   srcImgModal.src = evt.target.src;
   srcImgModal.alt = evt.target.alt;
-  headingImg.textContent = event.target.parentNode.textContent;
+  headingImg.textContent = evt.target.parentNode.textContent;
 }
-// очистка полей ввода модальньных  окон
-const clearInputPopup = ({ formSelector, inputSelector }) => {
-  const formsModal = Array.from(document.querySelectorAll(formSelector));
-  formsModal.forEach((form) => {
-    const formInputs = Array.from(form.querySelectorAll(inputSelector));
-    formInputs.forEach((input) => {
-      input.value = '';
-    });
-  });
-};
 
 // очистка ошибок и устанавка не рабочей кнопки
-const resetInput = ({
+const resetErrorInput = ({
   formSelector,
   inputSelector,
   inputErrorClass,
@@ -219,6 +200,7 @@ const resetInput = ({
       const errorContainer = document.querySelector(`#${input.id}-error`);
       errorContainer.textContent = '';
       input.classList.remove(inputErrorClass);
+      input.value = '';
     });
     const buttonsForm = form.querySelector(submitButtonSelector);
     buttonsForm.classList.add(inactiveButtonClass);
