@@ -185,7 +185,7 @@ function fillInImagePopup(evt) {
   headingImg.textContent = evt.target.parentNode.textContent;
 }
 
-// очистка ошибок и устанавка не рабочей кнопки
+// очистка ошибок, очистка полей ввода и устанавка не рабочей кнопки
 const resetErrorAndClearInput = ({
   formSelector,
   inputSelector,
