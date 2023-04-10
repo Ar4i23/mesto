@@ -120,14 +120,14 @@ function openImagePopup(evt) {
 // и запуск функции добавления данных в inputs
 function openEditProfilePopup(evt) {
   openModal(popupEditProfile);
-  resetErrorInput(validationConfig);
+  resetErrorAndClearInput(validationConfig);
   fillInEditProfileFormInputs(evt);
 }
 // получение ссылки кнопки открытия модального окна AddCard,
 // запуск функции открытия с ссылкой на модальное окно AddCard
 function openAddCardPopup(evt) {
   openModal(popupAddCard);
-  resetErrorInput(validationConfig);
+  resetErrorAndClearInput(validationConfig);
 }
 
 //проверка попапов на наличие класса открытия попапа и кнопок закрытия
@@ -186,7 +186,7 @@ function fillInImagePopup(evt) {
 }
 
 // очистка ошибок и устанавка не рабочей кнопки
-const resetErrorInput = ({
+const resetErrorAndClearInput = ({
   formSelector,
   inputSelector,
   inputErrorClass,
