@@ -146,7 +146,6 @@ popups.forEach((popup) => {
 function closeModal(item) {
   item.classList.remove('modal_opened');
   document.removeEventListener('keydown', closePopupEsc);
-  item.removeEventListener('mousedown', closeModal);
 }
 // закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
