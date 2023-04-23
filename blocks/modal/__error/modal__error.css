@@ -9,5 +9,18 @@
   font-size: 12px;
   line-height: 15px;
 }
-@media (max-width: 340px) {
+@media (max-width: 1200px) {
+  .modal__error {
+    width: 358px;
+  }
+}
+@media (max-width: 560px) {
+  .modal__error {
+    width: 300px;
+  }
+}
+@media (max-width: 400px) {
+  .modal__error {
+    width: 260px;
+  }
 }

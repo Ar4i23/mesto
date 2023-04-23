@@ -1,74 +1,71 @@
-//объект ключ занчениями для заполнения функций
-const validationConfig = {
-  formSelector: '.modal__form',
-  inputSelector: '.modal__input',
-  submitButtonSelector: '.modal__button',
-  inactiveButtonClass: 'modal__button_invalid',
-  activeButtonClass: 'modal__button',
-  inputErrorClass: 'modal__input_error',
-};
-//функция запуска валидации
-const enableValidation = ({ formSelector, ...rest }) => {
-  const forms = Array.from(document.querySelectorAll(formSelector));
-  forms.forEach((form) => {
-    setEventListenersValidation(form, rest);
-  });
-};
-// функция установки слушателя на input ,
-// отправкой данных для проверки на валидность,
-// и дальнейших действий после получения иформации о валидности
-const setEventListenersValidation = (
-  formToValidate,
-  { inputSelector, submitButtonSelector, ...rest }
-) => {
-  const formInputs = Array.from(formToValidate.querySelectorAll(inputSelector));
-  const formButton = formToValidate.querySelector(submitButtonSelector);
-  formInputs.forEach((input) => {
-    input.addEventListener('input', () => {
-      checkInputValidity(input, rest);
-      if (hasInvalidInput(formInputs)) {
-        disableButton(formButton, rest);
-      } else {
-        enableButton(formButton, rest);
-      }
-    });
-  });
-};
-// проверка на валидность
-const checkInputValidity = (input, rest) => {
-  const currentInputErrorContainer = document.querySelector(
-    `#${input.id}-error`
-  );
-  if (input.validity.valid) {
-    currentInputErrorContainer.textContent = '';
-    removeRedLine(input, rest);
-  } else {
-    currentInputErrorContainer.textContent = input.validationMessage;
-    addRedLine(input, rest);
+import { validationConfig } from './variable.js';
+// class FormValidator в котором происходит валидация форм
+export class FormValidator {
+  constructor({
+    formSelector,
+    inputSelector,
+    submitButtonSelector,
+    inputErrorClass,
+    activeButtonClass,
+    inactiveButtonClass,
+  }) {
+    this._formSelector = formSelector;
+    this._inputSelector = inputSelector;
+    this._submitButtonSelector = submitButtonSelector;
+    this._inputErrorClass = inputErrorClass;
+    this._activeButtonClass = activeButtonClass;
+    this._inactiveButtonClass = inactiveButtonClass;
   }
-};
-// установка border red
-const addRedLine = (input, { inputErrorClass }) => {
-  input.classList.add(inputErrorClass);
-};
-// снятий border red
-const removeRedLine = (input, { inputErrorClass }) => {
-  input.classList.remove(inputErrorClass);
-};
-// проврка  на невалидность хоть одного поля ввода
-const hasInvalidInput = (formInputs) => {
-  return formInputs.some((item) => !item.validity.valid);
-};
-// установка валидной кнопки
-const enableButton = (button, { inactiveButtonClass }) => {
-  button.classList.remove(inactiveButtonClass);
-  button.removeAttribute('disabled');
-};
-// установка не валидной кнопки
-const disableButton = (button, { inactiveButtonClass }) => {
-  button.classList.add(inactiveButtonClass);
-  button.setAttribute('disabled', true);
-};
+  enableValidation() {
+    const forms = Array.from(document.querySelectorAll(this._formSelector));
+    forms.forEach((form) => {
+      this._setEventListenersValidation(form);
+    });
+  }
+  _setEventListenersValidation(form) {
+    const formInputs = Array.from(form.querySelectorAll(this._inputSelector));
+    const formButton = form.querySelector(this._submitButtonSelector);
+    formInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        this._checkInputValidity(input);
+        if (this._hasInvalidInput(formInputs)) {
+          this._disableButton(formButton);
+        } else {
+          this._enableButton(formButton);
+        }
+      });
+    });
+  }
+  _checkInputValidity(input) {
+    const currentInputErrorContainer = document.querySelector(
+      `#${input.id}-error`
+    );
 
-// запуск функции валидации
-enableValidation(validationConfig);
+    if (input.validity.valid) {
+      currentInputErrorContainer.textContent = '';
+      this._removeRedLine(input);
+    } else {
+      currentInputErrorContainer.textContent = input.validationMessage;
+      this._addRedLine(input);
+    }
+  }
+  _hasInvalidInput(formInputs) {
+    return formInputs.some((item) => !item.validity.valid);
+  }
+  _disableButton(button) {
+    button.classList.add(this._inactiveButtonClass);
+    button.setAttribute('disabled', true);
+  }
+  _enableButton(button) {
+    button.classList.remove(this._inactiveButtonClass);
+    button.removeAttribute('disabled');
+  }
+  _removeRedLine(input) {
+    input.classList.remove(this._inputErrorClass);
+  }
+  _addRedLine(input) {
+    input.classList.add(this._inputErrorClass);
+  }
+}
+const validate = new FormValidator(validationConfig);
+validate.enableValidation();
