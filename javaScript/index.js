@@ -1,4 +1,4 @@
-import { Section, Card } from './Card.js';
+import { Section, Card } from './Сard.js';
 import * as data from './variable.js';
 import { validateEditForm, validateCreadForm } from './FormValidator.js';
 validateEditForm.enableValidation();
