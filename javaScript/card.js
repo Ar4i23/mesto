@@ -1,6 +1,7 @@
 import * as dataInport from './variable.js';
-// class Card добавление готовых карточек в котнтейнер
-class Card {
+
+// class Section добавление готовых карточек в котнтейнер
+class Section {
   constructor(containerSelector) {
     this._container = containerSelector;
   }
@@ -8,14 +9,14 @@ class Card {
     this._container.prepend(_card);
   }
 }
-// class CardItem создание новых карточек
-class CardItem {
-  constructor(data) {
+// class Card создание новых карточек
+class Card {
+  constructor(data, handleCardClick) {
     this._data = data;
+    this._handleCardClick = handleCardClick;
     this._template = dataInport.newElement;
-    this._openImagePopup = this._openImagePopup.bind(this);
   }
-  _creadCard() {
+  _generateCard() {
     this._card = this._template.cloneNode(true);
     const itemImg = this._card.querySelector('.element__image');
     itemImg.src = this._data.link;
@@ -24,44 +25,27 @@ class CardItem {
     return this._card;
   }
 
-  _getCard() {
-    this._creadCard();
+  getCard() {
+    this._generateCard();
     this._setEventListeners();
     return this._card;
   }
-  _setEventListeners(evt) {
+  _setEventListeners() {
     const btnDelete = this._card.querySelector('.element__button-delete');
     const btnLike = this._card.querySelector('.element__button-like');
     const imgCard = this._card.querySelector('.element__image');
     btnDelete.addEventListener('click', this._deleteCard);
     btnLike.addEventListener('click', this._toggleLike);
-    imgCard.addEventListener('click', this._openImagePopup);
+    imgCard.addEventListener('click', () => {
+      this._handleCardClick(this._data.name, this._data.link);
+    });
   }
-  _deleteCard() {
-    this.closest('.element').remove();
+  _deleteCard(evt) {
+    evt.target.closest('.element').remove();
   }
-  _toggleLike() {
-    this.classList.toggle('element__button-like_active');
-  }
-  _openModal(evt) {
-    evt.classList.add('modal_opened');
-  }
-  _openImagePopup() {
-    this._openModal(dataInport.popupImage);
-    this._fillInImagePopup();
-  }
-  _fillInImagePopup() {
-    dataInport.srcImgModal.src = this._data.link;
-    dataInport.srcImgModal.alt = this._data.name;
-    dataInport.headingImg.textContent = this._data.name;
+  _toggleLike(evt) {
+    evt.target.classList.toggle('element__button-like_active');
   }
 }
-// проход по массиву объектов и передача его элементов в параметр
-// для создания новой карточки
-dataInport.initialCards.forEach((item) => {
-  const listCard = new Card(dataInport.elements);
-  const cardItem = new CardItem(item);
-  const card = cardItem._getCard();
-  listCard.addCard(card);
-});
-export { Card, CardItem };
+
+export { Section, Card };

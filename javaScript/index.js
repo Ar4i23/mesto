@@ -1,35 +1,32 @@
+import { Section, Card } from './Card.js';
 import * as data from './variable.js';
-import { Card, CardItem } from './card.js';
-import { FormValidator } from './validate.js';
-
+import { validateEditForm, validateCreadForm } from './FormValidator.js';
+validateEditForm.enableValidation();
+validateCreadForm.enableValidation();
 // // навешивание обработчиков клика на кнопки
 data.buttonOpenEditProfileForm.addEventListener('click', openEditProfilePopup);
 data.buttonOpenAddCardForm.addEventListener('click', openAddCardPopup);
-data.formAddCard.addEventListener('submit', cardFormSubmit);
-data.formEditProfile.addEventListener('submit', preservationOfTheInputData);
+data.formCreadCard.addEventListener('submit', handleCardFormSubmit);
+data.formEditProfile.addEventListener('submit', handleProfileFormSubmit);
 
-function cardFormSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const item = {
     name: data.inputCreadNaming.value,
     link: data.inputCreadLinking.value,
   };
-  const listCard = new Card(data.elements);
-  const cardItem = new CardItem(item);
-  const card = cardItem._getCard();
-  listCard.addCard(card);
-  // renderCard(item);
   const modal = evt.target.closest('.modal');
+  createCard(item);
   closeModal(modal);
   evt.target.reset();
 }
 // // добавление информации в input  при открытии модального окна
-function fillInEditProfileFormInputs(evt) {
+function fillInEditProfileFormInputs() {
   data.inputEditName.value = data.titleElement.textContent;
   data.inputEditAbout.value = data.subtitleElement.textContent;
 }
 // // сохранение изменений profile__info и закрытие модального окна
-function preservationOfTheInputData(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   data.titleElement.textContent = data.inputEditName.value;
   data.subtitleElement.textContent = data.inputEditAbout.value;
@@ -45,16 +42,16 @@ function openModal(item) {
 // // получение ссылки кнопки открытия модального окна EditProfile,
 // // запуск функции открытия с ссылкой на модальное окно EditProfile,
 // // и запуск функции добавления данных в inputs
-function openEditProfilePopup(evt) {
+function openEditProfilePopup() {
   openModal(data.popupEditProfile);
-  resetErrorAndClearInput(data.validationConfig);
-  fillInEditProfileFormInputs(evt);
+  validateEditForm._resetErrorAndClearInput();
+  fillInEditProfileFormInputs();
 }
 // // получение ссылки кнопки открытия модального окна AddCard,
 // // запуск функции открытия с ссылкой на модальное окно AddCard
-function openAddCardPopup(evt) {
-  openModal(data.popupAddCard);
-  resetErrorAndClearInput(data.validationConfig);
+function openAddCardPopup() {
+  openModal(data.popupCreadCard);
+  validateCreadForm._resetErrorAndClearInput();
 }
 
 // //проверка попапов на наличие класса открытия попапа и кнопок закрытия
@@ -76,31 +73,27 @@ function closeModal(item) {
 }
 // закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
+  console.log(evt);
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.modal_opened');
     closeModal(popup);
   }
 }
+function handleCardClick(name, link) {
+  data.srcImgModal.src = link;
+  data.srcImgModal.alt = name;
+  data.headingImg.textContent = name;
+  openModal(data.popupImage);
+}
 
-// очистка ошибок, очистка полей ввода и устанавка не рабочей кнопки
-const resetErrorAndClearInput = ({
-  formSelector,
-  inputSelector,
-  inputErrorClass,
-  submitButtonSelector,
-  inactiveButtonClass,
-}) => {
-  const forms = Array.from(document.querySelectorAll(formSelector));
-  forms.forEach((form) => {
-    const formInputs = Array.from(form.querySelectorAll(inputSelector));
-    formInputs.forEach((input) => {
-      const errorContainer = document.querySelector(`#${input.id}-error`);
-      errorContainer.textContent = '';
-      input.classList.remove(inputErrorClass);
-      input.value = '';
-    });
-    const buttonsForm = form.querySelector(submitButtonSelector);
-    buttonsForm.classList.add(inactiveButtonClass);
-    buttonsForm.setAttribute('disabled', true);
-  });
-};
+const listCard = new Section(data.elements);
+function createCard(item) {
+  const cardItem = new Card(item, handleCardClick);
+  return cardItem.getCard();
+}
+// проход по массиву объектов и передача его элементов в параметр   ;
+// для создания новой карточки
+data.initialCards.forEach((item) => {
+  const card = createCard(item);
+  listCard.addCard(card);
+});

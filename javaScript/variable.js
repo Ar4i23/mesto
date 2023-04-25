@@ -15,10 +15,10 @@ const buttonOpenEditProfileForm = document.querySelector(
 const buttonOpenAddCardForm = document.querySelector('.profile__add-botton');
 // кнопки закрытия модальных окон и сами окна и их элементы
 
-const popupAddCard = document.querySelector('#my-modal-create');
-const formAddCard = document.querySelector('.modal__form_cread');
+const popupCreadCard = document.querySelector('#my-modal-create');
+const formCreadCard = document.forms['profile-form-cread'];
 const popupEditProfile = document.querySelector('#my-modal-edit');
-const formEditProfile = document.querySelector('.modal__form_edit');
+const formEditProfile = document.forms['profile-form-edit'];
 const popupImage = document.querySelector('#my-modal-image');
 const srcImgModal = document.querySelector('.modal__img');
 const headingImg = document.querySelector('.modal__heading');
@@ -70,13 +70,13 @@ export {
   elements,
   buttonOpenAddCardForm,
   buttonOpenEditProfileForm,
-  formAddCard,
+  formCreadCard,
   formEditProfile,
   popups,
   popupImage,
   srcImgModal,
   headingImg,
-  popupAddCard,
+  popupCreadCard,
   popupEditProfile,
   inputEditName,
   titleElement,
