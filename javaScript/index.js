@@ -73,7 +73,6 @@ function closeModal(item) {
 }
 // закрытие попапа кнопкой Escape
 function closePopupEsc(evt) {
-  console.log(evt);
   if (evt.key === 'Escape') {
     const popup = document.querySelector('.modal_opened');
     closeModal(popup);
