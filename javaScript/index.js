@@ -1,6 +1,15 @@
 import { Section, Card } from './Сard.js';
 import * as data from './variable.js';
-import { validateEditForm, validateCreadForm } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
+
+const validateEditForm = new FormValidator(
+  data.formEditProfile,
+  data.validationConfig
+);
+const validateCreadForm = new FormValidator(
+  data.formCreadCard,
+  data.validationConfig
+);
 validateEditForm.enableValidation();
 validateCreadForm.enableValidation();
 // // навешивание обработчиков клика на кнопки
@@ -16,7 +25,9 @@ function handleCardFormSubmit(evt) {
     link: data.inputCreadLinking.value,
   };
   const modal = evt.target.closest('.modal');
-  createCard(item);
+  const card = createCard(item);
+  cardSection.addCard(card);
+
   closeModal(modal);
   evt.target.reset();
 }
@@ -44,14 +55,14 @@ function openModal(item) {
 // // и запуск функции добавления данных в inputs
 function openEditProfilePopup() {
   openModal(data.popupEditProfile);
-  validateEditForm._resetErrorAndClearInput();
+  validateEditForm.resetErrorAndClearInput();
   fillInEditProfileFormInputs();
 }
 // // получение ссылки кнопки открытия модального окна AddCard,
 // // запуск функции открытия с ссылкой на модальное окно AddCard
 function openAddCardPopup() {
   openModal(data.popupCreadCard);
-  validateCreadForm._resetErrorAndClearInput();
+  validateCreadForm.resetErrorAndClearInput();
 }
 
 // //проверка попапов на наличие класса открытия попапа и кнопок закрытия
@@ -85,14 +96,15 @@ function handleCardClick(name, link) {
   openModal(data.popupImage);
 }
 
-const listCard = new Section(data.elements);
+const cardSection = new Section(data.elements);
 function createCard(item) {
   const cardItem = new Card(item, handleCardClick);
   return cardItem.getCard();
 }
+// console.log(createCard());
 // проход по массиву объектов и передача его элементов в параметр   ;
 // для создания новой карточки
 data.initialCards.forEach((item) => {
   const card = createCard(item);
-  listCard.addCard(card);
+  cardSection.addCard(card);
 });

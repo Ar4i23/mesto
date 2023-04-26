@@ -1,9 +1,3 @@
-import {
-  formCreadCard,
-  formEditProfile,
-  validationConfig,
-} from './variable.js';
-
 // class FormValidator в котором происходит валидация форм
 class FormValidator {
   constructor(
@@ -69,17 +63,15 @@ class FormValidator {
   _addRedLine(input) {
     input.classList.add(this._inputErrorClass);
   }
-  _resetErrorAndClearInput() {
+  resetErrorAndClearInput() {
     this._inputs.forEach((input) => {
-      const ErrorContainer = document.querySelector(`#${input.id}-error`);
-      ErrorContainer.textContent = '';
+      const errorContainer = document.querySelector(`#${input.id}-error`);
+      errorContainer.textContent = '';
       input.value = '';
       input.classList.remove(this._inputErrorClass);
     });
     this._disableButton();
   }
 }
-const validateEditForm = new FormValidator(formEditProfile, validationConfig);
-const validateCreadForm = new FormValidator(formCreadCard, validationConfig);
 
-export { validateEditForm, validateCreadForm };
+export default FormValidator;
