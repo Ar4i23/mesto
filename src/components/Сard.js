@@ -1,16 +1,7 @@
-import * as dataInport from './variable.js';
+import * as dataInport from '../utils/constants.js';
 
-// class Section добавление готовых карточек в котнтейнер
-class Section {
-  constructor(containerSelector) {
-    this._container = containerSelector;
-  }
-  addCard(_card) {
-    this._container.prepend(_card);
-  }
-}
 // class Card создание новых карточек
-class Card {
+export default class Card {
   constructor(data, handleCardClick) {
     this._data = data;
     this._handleCardClick = handleCardClick;
@@ -47,5 +38,3 @@ class Card {
     evt.target.classList.toggle('element__button-like_active');
   }
 }
-
-export { Section, Card };

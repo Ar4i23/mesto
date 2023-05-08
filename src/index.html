@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Mesto</title>
   </head>
   <!-- блок page -->
@@ -14,7 +13,7 @@
       <a href="#" class="header__logo-link">
         <img
           class="header__img"
-          src="./images/svg/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Логотип Место"
         />
       </a>
@@ -24,7 +23,7 @@
       <!-- блок  profile-->
       <section class="profile">
         <img
-          src="./images/kusto.png"
+          src="<%=require('./images/kusto.png')%>"
           alt="Жак-Ив Кусто в красной шапке"
           class="profile__image-ellipse"
         />
@@ -85,7 +84,7 @@
         </form>
       </div>
     </section>
-    <section class="modal" id="my-modal-create">
+    <section class="modal" id="my-modal-cread">
       <div class="modal__container">
         <button class="modal__close" id="close-create" type="button"></button>
         <h2 class="modal__title">Новое место</h2>
@@ -145,6 +144,5 @@
         </div>
       </article>
     </template>
-    <script type="module" src="./javaScript/index.js"></script>
   </body>
 </html>

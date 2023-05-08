@@ -67,7 +67,6 @@ class FormValidator {
     this._inputs.forEach((input) => {
       const errorContainer = document.querySelector(`#${input.id}-error`);
       errorContainer.textContent = '';
-      input.value = '';
       input.classList.remove(this._inputErrorClass);
     });
     this._disableButton();
