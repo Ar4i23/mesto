@@ -1,11 +1,11 @@
-import Card from './components/Сard.js';
-import Section from './components/Section.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import * as data from './utils/constants.js';
-import FormValidator from './components/FormValidator.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import './pages/index.css';
+import Card from '../components/Сard.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import * as data from '../utils/constants.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import '../pages/index.css';
 
 const validateEditForm = new FormValidator(
   data.formEditProfile,

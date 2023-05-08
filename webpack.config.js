@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/pages/index.js",
   output: {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
@@ -34,17 +34,7 @@ module.exports = {
           "postcss-loader",
         ],
       },
-      {
-        test: /\.(png|svg|jpe?g)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              esModule: false,
-            },
-          },
-        ],
-      },
+      { test: /\.(jpg|png|svg|gif)$/, type: "asset/resource" },
     ],
   },
 };
