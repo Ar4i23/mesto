@@ -1,11 +1,9 @@
-import * as dataInport from '../utils/constants.js';
-
 // class Card создание новых карточек
 export default class Card {
-  constructor(data, handleCardClick) {
+  constructor(data, handleCardClick, templateElement) {
     this._data = data;
     this._handleCardClick = handleCardClick;
-    this._template = dataInport.newElement;
+    this._template = templateElement;
   }
   _generateCard() {
     this._card = this._template.cloneNode(true);

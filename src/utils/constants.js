@@ -1,33 +1,41 @@
 // inputs модального окна редактирования
-const inputEditName = document.querySelector('.modal__input_modal_name');
-const inputEditAbout = document.querySelector('.modal__input_modal_about');
+export const inputEditName = document.querySelector('.modal__input_modal_name');
+export const inputEditAbout = document.querySelector(
+  '.modal__input_modal_about'
+);
 // inputs модального окна добавления новых карточек
-const inputCreadNaming = document.querySelector('.modal__input_naming');
-const inputCreadLinking = document.querySelector('.modal__input_linking');
+export const inputCreadNaming = document.querySelector('.modal__input_naming');
+export const inputCreadLinking = document.querySelector(
+  '.modal__input_linking'
+);
 // заголовок и подзаголовок profile__info
-const titleElement = document.querySelector('.profile__info-title');
-const subtitleElement = document.querySelector('.profile__info-subtitle');
+export const titleElement = document.querySelector('.profile__info-title');
+export const subtitleElement = document.querySelector(
+  '.profile__info-subtitle'
+);
 // кнопка открывания модального окна редактирования
-const buttonOpenEditProfileForm = document.querySelector(
+export const buttonOpenEditProfileForm = document.querySelector(
   '.profile__info-edit-button'
 );
 // кнопка открывания модального окна добавления новых карточек
-const buttonOpenAddCardForm = document.querySelector('.profile__add-botton');
+export const buttonOpenAddCardForm = document.querySelector(
+  '.profile__add-botton'
+);
 // кнопки закрытия модальных окон и сами окна и их элементы
 
-const formCreadCard = document.forms['profile-form-cread'];
-const formEditProfile = document.forms['profile-form-edit'];
-const srcImgModal = document.querySelector('.modal__img');
-const headingImg = document.querySelector('.modal__heading');
+export const formCreadCard = document.forms['profile-form-cread'];
+export const formEditProfile = document.forms['profile-form-edit'];
+export const srcImgModal = document.querySelector('.modal__img');
+export const headingImg = document.querySelector('.modal__heading');
 // template карточка
-const newElement = document.querySelector('#new-element').content;
+export const templateElement = document.querySelector('#new-element').content;
 // блок elements куда добавляются готовые карточки
-const elements = document.querySelector('.elements');
+export const elements = document.querySelector('.elements');
 //все попапы
-const popups = document.querySelectorAll('.modal');
+export const popups = document.querySelectorAll('.modal');
 
 // массив с названием и ссылкой
-const initialCards = [
+export const initialCards = [
   {
     name: 'New York',
     link: 'https://rare-gallery.com/uploads/posts/934209-New-York-City-street-Times-Square.jpg',
@@ -54,30 +62,11 @@ const initialCards = [
   },
 ];
 //объект ключ занчениями для заполнения функций
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.modal__form',
   inputSelector: '.modal__input',
   submitButtonSelector: '.modal__button',
   inactiveButtonClass: 'modal__button_invalid',
   activeButtonClass: 'modal__button',
   inputErrorClass: 'modal__input_error',
-};
-export {
-  initialCards,
-  elements,
-  buttonOpenAddCardForm,
-  buttonOpenEditProfileForm,
-  formCreadCard,
-  formEditProfile,
-  popups,
-  srcImgModal,
-  headingImg,
-  inputEditName,
-  titleElement,
-  inputEditAbout,
-  subtitleElement,
-  inputCreadNaming,
-  inputCreadLinking,
-  validationConfig,
-  newElement,
 };
