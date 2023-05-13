@@ -30,9 +30,8 @@ validateCreadForm.enableValidation();
 buttonOpenEditProfileForm.addEventListener('click', openEditProfilePopup);
 buttonOpenAddCardForm.addEventListener('click', openAddCardPopup);
 
-function handleCardFormSubmit(evt) {
-  const infoCard = { name: evt.name, link: evt.about };
-  cardSection.renderer(infoCard);
+function handleCardFormSubmit(infoAdd) {
+  cardSection.renderer(infoAdd);
 }
 
 function fillInEditProfileFormInputs(info) {
@@ -40,8 +39,8 @@ function fillInEditProfileFormInputs(info) {
   inputEditAbout.value = info.about;
 }
 
-function handleProfileFormSubmit(evt) {
-  userInfo.setUserInfo(evt);
+function handleProfileFormSubmit(infoEdit) {
+  userInfo.setUserInfo(infoEdit);
 }
 
 function openEditProfilePopup() {
@@ -74,16 +73,18 @@ function handleCardClick(name, link) {
 }
 const creadCard = (item) => {
   const cardItem = new Card(item, handleCardClick, templateElement);
-  return cardSection.addItem(cardItem.getCard());
+  return cardItem.getCard();
 };
 
 const cardSection = new Section(
   {
     items: initialCards,
-    renderer: creadCard,
+    renderer: (item) => {
+      const card = creadCard(item);
+      cardSection.addItem(card);
+    },
   },
 
   elements
 );
-
 cardSection.renderItem();

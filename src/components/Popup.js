@@ -7,6 +7,7 @@ export default class Popup {
   }
   open() {
     this._popup.classList.add('modal_opened');
+    document.addEventListener('keydown', this._hendleEscClose);
   }
   close() {
     this._popup.classList.remove('modal_opened');
@@ -27,6 +28,5 @@ export default class Popup {
         this.close();
       }
     });
-    document.addEventListener('keydown', this._hendleEscClose);
   }
 }
