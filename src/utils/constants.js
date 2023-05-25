@@ -3,6 +3,8 @@ export const inputEditName = document.querySelector('.modal__input_modal_name');
 export const inputEditAbout = document.querySelector(
   '.modal__input_modal_about'
 );
+// аватарка профиля
+export const avatarProfilBg = document.querySelector('.profile__image-ellipse');
 // inputs модального окна добавления новых карточек
 export const inputCreadNaming = document.querySelector('.modal__input_naming');
 export const inputCreadLinking = document.querySelector(
@@ -22,7 +24,7 @@ export const buttonOpenAddCardForm = document.querySelector(
   '.profile__add-botton'
 );
 // кнопки закрытия модальных окон и сами окна и их элементы
-
+export const formAvatar = document.forms['profile-form-avatar'];
 export const formCreadCard = document.forms['profile-form-cread'];
 export const formEditProfile = document.forms['profile-form-edit'];
 export const srcImgModal = document.querySelector('.modal__img');

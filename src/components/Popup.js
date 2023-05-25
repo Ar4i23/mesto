@@ -1,3 +1,4 @@
+let log = console.log;
 export default class Popup {
   constructor(selectorPopup) {
     this._popup = document.querySelector(selectorPopup);

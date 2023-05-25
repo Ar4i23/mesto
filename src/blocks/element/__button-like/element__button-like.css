@@ -5,7 +5,7 @@
   padding: 0;
   margin-right: 20px;
   background: transparent;
-  background-image: url(../../../images/like.svg);
+  background-image: url('../../../images/like.svg');
   cursor: pointer;
 }
 .element__button-like:hover {

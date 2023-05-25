@@ -7,7 +7,6 @@
 @import url(../blocks/content/content.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__image-ellipse/profile__image-ellipse.css);
-@import url(../blocks/profile/__image-ellipse/_pencil-display/profile__image-ellipse_pencil-display.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__info-container/profile__info-container.css);
 @import url(../blocks/profile/__info-title/profile__info-title.css);
@@ -18,8 +17,10 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__box/element__box.css);
 @import url(../blocks/element/__link/element__link.css);
-@import url(../blocks/element/__counter/element__counter.css);
+@import url(../blocks/element/__counter-like/element__counter-like.css);
 @import url(../blocks/element/__button-delete/element__button-delete.css);
+@import url(../blocks/element/__button-delete/_hidden/element__button-delete_hidden.css);
+@import url(../blocks/element/__button-delete/_visibility/element__button-delete_visible.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__button-like/element__button-like.css);
 @import url(../blocks/element/__button-like/_active/element__button-like_active.css);
@@ -30,9 +31,6 @@
 @import url(../blocks/modal/__img/modal__img.css);
 @import url(../blocks/modal//__heading/modal__heading.css);
 @import url(../blocks/modal/_opened/modal_opened.css);
-@import url(../blocks/modal/_opened-avatar/modal_opened-avatar.css);
-@import url(../blocks/modal/_opened-img/modal_opened-img.css);
-@import url(../blocks/modal/_opened-delete/modal_opened-delete.css);
 @import url(../blocks/modal/__button/modal__button.css);
 @import url(../blocks/modal/__button/_invalid/modal__button_invalid.css);
 @import url(../blocks/modal/__close/modal__close.css);
@@ -41,6 +39,8 @@
 @import url(../blocks/modal/__input/modal__input.css);
 @import url(../blocks/modal/__input/_error/modal__input_error.css);
 @import url(../blocks/modal/__title/modal__title.css);
+@import url(../blocks/modal/__title/_avatar/modal__title_avatar.css);
+@import url(../blocks/modal/__title/_delete/modal__title_delete.css);
 @import url(../blocks/modal/__form/modal__form.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

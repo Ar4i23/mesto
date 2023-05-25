@@ -22,22 +22,19 @@
     <main class="content">
       <!-- блок  profile-->
       <section class="profile">
-        <img
-          class="profile__image-ellipse"
-          src="<%=require('./images/kusto.png')%>"
-          alt="Жак-Ив Кусто в красной шапке"
-        />
-
+        <div class="profile__image-ellipse"></div>
         <div class="profile__info">
           <div class="profile__info-container">
-            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+            <h1 class="profile__info-title"></h1>
+            <!-- Жак-Ив Кусто -->
             <button
               class="profile__info-edit-button"
               type="button"
               aria-label="Редактировать профиль"
             ></button>
           </div>
-          <p class="profile__info-subtitle">Исследователь океана</p>
+          <p class="profile__info-subtitle"></p>
+          <!-- Исследователь океана -->
         </div>
         <button
           class="profile__add-botton"
@@ -47,7 +44,7 @@
       <!-- блок  elements-->
       <section class="elements"></section>
     </main>
-    <!-- блок  modal-->
+    <!-- попап  edit-->
     <section class="modal" id="my-modal-edit">
       <div class="modal__container">
         <button class="modal__close" id="close-edit" type="button"></button>
@@ -84,6 +81,7 @@
           </button>
         </form>
       </div>
+      <!-- попап  cread-->
     </section>
     <section class="modal" id="my-modal-cread">
       <div class="modal__container">
@@ -120,6 +118,7 @@
         </form>
       </div>
     </section>
+    <!-- попап  image-->
     <section class="modal" id="my-modal-image">
       <div class="modal__container modal__container_img">
         <button class="modal__close" id="close-image" type="button"></button>
@@ -127,31 +126,39 @@
         <p class="modal__heading"></p>
       </div>
     </section>
-
+    <!-- попап  delete-->
     <section class="modal" id="my-modal-delete">
       <div class="modal__container modal__container_delete">
-        <h2 class="modal__title">Вы уверены?</h2>
-        <button class="modal__close" id="close-image" type="button"></button>
-        <button class="modal__button" id="delete" type="submit">Да</button>
+        <form
+          class="modal__form modal__form_delete"
+          name="profile-form-delete"
+          novalidate
+        >
+          <h2 class="modal__title modal__title_delete">Вы уверены?</h2>
+          <button class="modal__close" id="close-image" type="button"></button>
+          <button class="modal__button" id="delete" type="submit">Да</button>
+        </form>
       </div>
     </section>
-
+    <!-- попап  avatar-->
     <section class="modal" id="my-modal-avatar">
-      <div class="modal__container modal__container_avatar">
-        <h2 class="modal__title">Обновить аватар</h2>
-        <input
-          id="link-avatar"
-          name="link"
-          type="url"
-          class="modal__input modal__input_linking"
-          placeholder="Ссылка на картинку"
-          required
-        />
-        <span class="modal__error" id="link-avatar-error"></span>
+      <div class="modal__container">
+        <h2 class="modal__title modal__title_avatar">Обновить аватар</h2>
         <button class="modal__close" id="close-image" type="button"></button>
-        <button class="modal__button" id="avatar" type="submit">
-          Сохранить
-        </button>
+        <form class="modal__form" name="profile-form-avatar" novalidate>
+          <input
+            id="link-avatar"
+            name="avatar"
+            type="url"
+            class="modal__input modal__input_linking"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span class="modal__error" id="link-avatar-error"></span>
+          <button class="modal__button" id="avatar" type="submit">
+            Сохранить
+          </button>
+        </form>
       </div>
     </section>
 
@@ -159,6 +166,7 @@
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
+    <!-- элемент  template-->
     <template id="new-element">
       <article class="element">
         <button class="element__button-delete"></button>
@@ -171,7 +179,8 @@
               type="button"
               aria-label="Кнопка лайк"
             ></button>
-            <p class="element__counter"></p>
+            <!-- счетик лайков -->
+            <p class="element__counter-like"></p>
           </div>
         </div>
       </article>
