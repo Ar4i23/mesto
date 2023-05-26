@@ -55,8 +55,8 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._btnDelete.addEventListener('click', (evt) => {
-      this.handleClickBtnDelete(this._data, evt);
+    this._btnDelete.addEventListener('click', () => {
+      this.handleClickBtnDelete(this._data, this);
     });
     this._btnLike.addEventListener('click', () => {
       this._handleLike();
@@ -74,5 +74,8 @@ export default class Card {
     this._generateCard();
     this._setEventListeners();
     return this._card;
+  }
+  removeCard() {
+    this._element.remove();
   }
 }

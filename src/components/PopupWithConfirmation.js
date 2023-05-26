@@ -7,10 +7,10 @@ export default class PopupWithConfirmation extends Popup {
     this._btnYes = this._form.querySelector('.modal__button');
     this._btnYesDefault = this._btnYes.textContent;
   }
-  open(data, evt) {
+  open(data, element) {
     super.open();
     this._element = data;
-    this._btnDelete = evt;
+    this._btnDelete = element;
   }
 
   setupDefaultText() {

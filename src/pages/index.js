@@ -74,9 +74,7 @@ function openAddCardPopup() {
 
 function openEditProfilePopup() {
   popupEdit.open();
-  api.getUserInfo().then((data) => {
-    fillInEditProfileFormInputs(data);
-  });
+  fillInEditProfileFormInputs(userInfo.getUserInfo());
   validateEditForm.resetErrorAndClearInput();
 }
 
@@ -86,9 +84,10 @@ function openAvatarPopup() {
 }
 // обработчики submit form
 function handleSubmitFormCard(infoAdd) {
-  Promise.all([api.getUserInfo(), api.addCardByServer(infoAdd)])
-    .then(([dataUser, dataCard]) => {
-      dataCard.myId = dataUser._id;
+  api
+    .addCardByServer(infoAdd)
+    .then((dataCard) => {
+      dataCard.myId = dataCard.owner._id;
       cardSection.renderItem(dataCard);
       popupCreate.close();
     })
@@ -131,11 +130,11 @@ function fillInEditProfileFormInputs(info) {
   inputEditAbout.value = info.about;
 }
 // удаление карточки
-function deleteCard(data, evt) {
+function deleteCard(data, element) {
   api
     .deleteCardByServer(data)
     .then(() => {
-      evt.target.closest('.element').remove();
+      element.removeCard();
       popupDelete.close();
     })
     .catch((err) => console.error(`Ошибка при удалении карточки:${err}`))

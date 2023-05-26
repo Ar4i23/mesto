@@ -4,6 +4,13 @@ export default class UserInfo {
     this._subtitleElement = subtitleElement;
     this._avatarProfilBg = avatarProfilBg;
   }
+  getUserInfo() {
+    const infoUser = {
+      name: this._titleElement.textContent,
+      about: this._subtitleElement.textContent,
+    };
+    return infoUser;
+  }
 
   setUserInfo(element) {
     this._avatarProfilBg.style.backgroundImage = `url(${element.avatar})`;
