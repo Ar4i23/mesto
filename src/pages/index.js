@@ -188,6 +188,7 @@ const cardSection = new Section(
 // запрос на сервер информации пользователя и карточек
 Promise.all([api.getUserInfo(), api.getCards()])
   .then(([dataUser, dataCard]) => {
+    console.log(dataCard);
     userInfo.setUserInfo(dataUser);
     dataCard.reverse().forEach((element) => {
       element.myId = dataUser._id;
